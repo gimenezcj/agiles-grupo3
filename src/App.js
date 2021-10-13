@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Desafíame!</h1>
+        <h1>Desafíame</h1>
         <Link to="/">Ir al home</Link>
         <br/>
         <Link to="/modificar">Ir al modificar</Link>
