@@ -20,16 +20,10 @@ function Agregar() {
       <div class="form-group"> 
         <div class="form-floating mb-3">
           <input type="text" class="form-control" id="floatingInput" placeholder="Ingrese el nombre del reto"/>
-          <label for="floatingInput">Reto</label>
+          <label for="floatingInput">Titulo</label>
         </div>  
       </div>
 
-      <div class="form-group">
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="floatingAutor" placeholder="Password"/>
-          <label for="floatingPassword">Autor</label>
-        </div>
-      </div>
       <div class="form-group">
       <div class="form-floating mb-3">
         <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
@@ -37,7 +31,7 @@ function Agregar() {
       </div>
       </div>
       <div class="row d-flex justify-content-center mb-3">
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" class="btn btn-primary" >Agregar</button>
       </div>
       </form>
       </div>
