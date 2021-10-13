@@ -1,5 +1,6 @@
 import React from "react";
-import { Card, Row, Col, Image } from "react-bootstrap";
+import { Card, Row, Col, Image, Button } from "react-bootstrap";
+import { BsTrash } from "react-icons/bs";
 
 function Reto(props) {
   return (
@@ -20,6 +21,7 @@ function Reto(props) {
                 {props.title}
               </Card.Title>
               <Card.Text>{props.description}</Card.Text>
+              <Button variant="danger"><BsTrash /></Button>
             </Card.Body>
           </Col>
         </Row>
