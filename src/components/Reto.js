@@ -17,7 +17,6 @@ function Reto(props) {
           <Col>
             <Card.Body>
               <Card.Title>
-                {"Dark"}
                 {props.title}
               </Card.Title>
               <Card.Text>{props.description}</Card.Text>
