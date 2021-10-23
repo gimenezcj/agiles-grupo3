@@ -1,6 +1,26 @@
-import app from '../data_source/firebase-config'
 import { getFirestore, doc, getDoc, collection, getDocs, addDoc, deleteDoc, setDoc} from 'firebase/firestore';
 import { Reto, retoConverter } from '../model/Reto'
+
+
+/**
+ * AYUDA (por las dudas)
+ * 
+ * ----- basic imports from component: ------
+ * 
+ * import * as database from '../data/repository/RetoRepository';
+ * import {Reto} from '../data/model/Reto'
+ * 
+ * ----- basic usage methods ------
+ * 
+ * database.getRetos().then(retos => console.log(retos));
+ * database.getRetoById("F352XJLds9UshCFckUPJ").then(reto => console.log(reto))
+ * database.addReto(new Reto("asdda","matematicas","resolver tareas"))
+ * database.deleteRetoById("99JRBRHW1uNP5VK53gLD")
+ * database.updateReto(new Reto("99JRBRHW1uNP5VK53gLD","matematicasupdatee","resolver tareasuptodeito"))
+ * 
+ *  -------------------------------
+ */
+
 
 const db = getFirestore();
 const RETOS_PATH = "retos"
