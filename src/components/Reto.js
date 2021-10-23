@@ -12,7 +12,7 @@ function Reto(props) {
         className="container-fluid w-50"
       >
         <Row>
-          <Col md={3} class="align-self-center">
+          <Col md={3} className="align-self-center">
             <Image src={props.bsPrefix} thumbnail />
           </Col>
           <Col>

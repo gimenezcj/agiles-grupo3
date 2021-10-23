@@ -10,7 +10,7 @@ const Categorias = () =>{
         <div>
         <StyledNavbar />    
         
-        <h1 class="display-4" style={{textAlign:'center' , marginTop:'50px' , marginBottom:'50px'}}>Categorias</h1>
+        <h1 className="display-4" style={{textAlign:'center' , marginTop:'50px' , marginBottom:'50px'}}>Categorias</h1>
         <div className='container'>
             <Row>
                 <Col md={3}>
