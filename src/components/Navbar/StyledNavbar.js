@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
+import { Link } from "react-router-dom";
 
 
 import "./StyledNavbar.css";
@@ -36,7 +37,9 @@ function StyledNavbar() {
         <Container>
           <h4 className="text-center mt-4">Desafíame</h4>
           <hr/>
-          <a class="nav-link active" href="/categorias"><h4 className="text-center mt-4">Categorias</h4></a>
+          <Link className="nav-link active text-center mt-4" to="/categorias"><h4>Categorias</h4></Link>
+          <Link className="nav-link active text-center mt-4" to="/modificar"><h4>Modificar</h4></Link>
+          <Link className="nav-link active text-center mt-4" to="/agregar"><h4>Agregar</h4></Link>
         </Container>
       </div>
     </Fragment >
