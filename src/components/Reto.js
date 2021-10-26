@@ -3,8 +3,9 @@ import { Card, Row, Col, Image, Button } from "react-bootstrap";
 import { BsTrash } from "react-icons/bs";
 
 function Reto(props) {
-  return (
-    <div className="container ">
+  const [show, setShow] = React.useState(true);
+  return show ? (
+    <div className="container">
       <Card
         bg={"Dark".toLowerCase()}
         text={"Dark".toLowerCase() === "light" ? "dark" : "white"}
@@ -15,19 +16,32 @@ function Reto(props) {
           <Col md={3} className="align-self-center">
             <Image src={props.bsPrefix} thumbnail />
           </Col>
-          <Col>
+          <Col md={6}>
             <Card.Body>
-              <Card.Title>
-                {props.title}
-              </Card.Title>
+              <Card.Title>{props.title}</Card.Title>
               <Card.Text>{props.description}</Card.Text>
-              <Button variant="danger"><BsTrash /></Button>
             </Card.Body>
+          </Col>
+          <Col md={3} class="align-self-center">
+            <Card.Footer>
+              <Button
+                variant="primary"
+                onClick={() => props.setModalShow(true)}
+              >
+                Modificar
+              </Button>{" "}
+              <Button
+                variant="danger"
+                onClick={() => setShow(false)}
+              >
+                <BsTrash />
+              </Button>
+            </Card.Footer>
           </Col>
         </Row>
       </Card>
     </div>
-  );
+  ) : null;
 }
 
 export default Reto;
