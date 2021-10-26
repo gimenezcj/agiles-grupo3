@@ -37,13 +37,10 @@ function StyledNavbar() {
         <Container>
           <h4 className="text-center mt-4">Desafíame</h4>
           <hr/>
-<<<<<<< HEAD
-          <a className="nav-link active" href="/categorias"><h4 className="text-center mt-4">Categorias</h4></a>
-=======
           <Link className="nav-link active text-center mt-4" to="/categorias"><h4>Categorias</h4></Link>
           <Link className="nav-link active text-center mt-4" to="/modificar"><h4>Modificar</h4></Link>
           <Link className="nav-link active text-center mt-4" to="/agregar"><h4>Agregar</h4></Link>
->>>>>>> ef4c340e598145e724043e32e3ca6bb04bafed06
+
         </Container>
       </div>
     </Fragment >
