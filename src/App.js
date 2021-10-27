@@ -4,12 +4,13 @@ import Home from "./pages/Home";
 import Agregar from "./pages/Agregar";
 import Modificar from "./pages/Modificar";
 import Categorias from "./pages/Categorias";
+import Perfil from "./pages/Perfil";
 
 function App() {
   return (
-    
+
       <div className="App">
-    
+
     <Router>
       <Switch>
         <Route exact path="/">
@@ -24,11 +25,14 @@ function App() {
         <Route path="/categorias">
           <Categorias />
         </Route>
+        <Route path="/perfil">
+          <Perfil />
+        </Route>
       </Switch>
 
     </Router>
     </div>
-    
+
   );
 }
 
