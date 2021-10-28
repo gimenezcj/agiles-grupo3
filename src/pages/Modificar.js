@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Reto from "../components/Reto";
+import Reto from "../components/Reto/Reto";
 import FormModificar from "../components/FormModificar";
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 

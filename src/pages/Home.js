@@ -1,26 +1,31 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 
+import Retos from "../components/Reto/Retos";
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 import StyledButton from "../components/StyledButton";
 
+import { getRetos } from "../data/repository/RetoRepository";
+
 function Home() {
-  // habitos harcodeados
-  const habitos = [];
+  const [retos, setRetos] = useState([]);
+
+  useEffect(() => {
+    getRetos().then(retos =>
+      setRetos(retos)
+    )
+  }, [])
 
   return (
     <Fragment>
       <StyledNavbar />
       <Container className="text-center">
-      {habitos.length === 0 ? (
-          <Fragment>
-            <p className="mt-5">Agrega un habito para empezar!</p>
-            <StyledButton />
-          </Fragment>
-        ) : (
-          <Fragment>{habitos.map((h) => h?.text)}</Fragment>
-        )}
-   
+        {
+          retos.length === 0
+            ? <p className="mt-5">Agrega un habito para empezar!</p>
+            : <Retos retos={retos} />
+        }
+        <StyledButton />
       </Container>
     </Fragment>
   );
