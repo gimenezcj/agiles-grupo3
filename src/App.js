@@ -7,28 +7,24 @@ import Categorias from "./pages/Categorias";
 
 function App() {
   return (
-    
-      <div className="App">
-    
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/modificar">
-          <Modificar />
-        </Route>
-        <Route path="/agregar">
-          <Agregar />
-        </Route>
-        <Route path="/categorias">
-          <Categorias />
-        </Route>
-      </Switch>
-
-    </Router>
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/modificar">
+            <Modificar />
+          </Route>
+          <Route path="/agregar">
+            <Agregar />
+          </Route>
+          <Route path="/categorias">
+            <Categorias />
+          </Route>
+        </Switch>
+      </Router>
     </div>
-    
   );
 }
 
