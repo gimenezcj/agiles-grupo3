@@ -1,6 +1,4 @@
-
 import StyledNavbar from "../components/Navbar/StyledNavbar";
-
 
 function Agregar() {
   return (
@@ -24,6 +22,14 @@ function Agregar() {
                 <input type="text" class="form-control" id="floatingInput" />
                 <label for="inputTitle">Titulo</label>
               </div>
+            </div>
+            <div class="form-group">
+              <select class="form-select form-select-lg mb-3">
+                <option selected>#amigo1</option>
+                <option value="1">#amigo2</option>
+                <option value="2">#amigo3</option>
+                <option value="3">#amigo4</option>
+              </select>
             </div>
 
             <div class="form-group">
