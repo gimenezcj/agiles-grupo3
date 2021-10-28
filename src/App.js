@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Agregar from "./pages/Agregar";
 import Modificar from "./pages/Modificar";
 import Categorias from "./pages/Categorias";
+import Perfil from "./pages/Perfil";
 
 function App() {
   return (

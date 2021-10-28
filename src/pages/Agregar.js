@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-=======
+
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 
->>>>>>> ef4c340e598145e724043e32e3ca6bb04bafed06
+
 function Agregar() {
   return (
     <div className="Agregar">

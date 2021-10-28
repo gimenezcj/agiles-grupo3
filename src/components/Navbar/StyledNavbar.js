@@ -40,6 +40,7 @@ function StyledNavbar() {
           <Link className="nav-link active text-center mt-4" to="/categorias"><h4>Categorias</h4></Link>
           <Link className="nav-link active text-center mt-4" to="/modificar"><h4>Modificar</h4></Link>
           <Link className="nav-link active text-center mt-4" to="/agregar"><h4>Agregar</h4></Link>
+          <Link className="nav-link active text-center mt-4" to="/perfil"><h4>Perfil</h4></Link>
 
         </Container>
       </div>

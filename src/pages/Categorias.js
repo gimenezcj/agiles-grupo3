@@ -8,48 +8,60 @@ import Categoria from '../components/Categoria/Categoria';
 const Categorias = () =>{
     return(
         <div>
-        <StyledNavbar />    
-        
+        <StyledNavbar />
+
         <h1 className="display-4" style={{textAlign:'center' , marginTop:'50px' , marginBottom:'50px'}}>Categorias</h1>
         <div className='container'>
             <Row>
                 <Col md={3}>
-                    <Categoria 
+                    <Categoria
                     imagen="https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg"
                     titulo="Programación"
                     texto="En esta categoria podras encontrar retos relacionados al mundo de la programación , desde la logica basica, hasta los algoritmos más complejos."
-                    /> 
+                    fecha="AGOSTO, 2021"
+                    estado="Pendiente"
+                    detalle="Practica / Programacion"
+                    />
                 </Col>
 
                 <Col md={3}>
-                    <Categoria 
+                    <Categoria
                     imagen="https://image.freepik.com/free-photo/high-school-students-working-international-flags-board_53876-78434.jpg"
                     titulo="Idiomas"
                     texto="En esta categoria podras encontrar retos relacionados al aprendizaje de los distintos idiomas del mundo, desde completar oraciones, hasta cuestionarios de comprensión de lectura."
-                    /> 
-                </Col> 
-                
+                    fecha="AGOSTO, 2021"
+                    estado="Pendiente"
+                    detalle="Practica / Idiomas"
+                    />
+                </Col>
+
                 <Col md={3}>
-                    <Categoria 
+                    <Categoria
                     imagen="https://image.freepik.com/free-photo/sports-tools_53876-138077.jpg"
                     titulo="Actividad Física"
                     texto="En esta categoria podras encontrar retos relacionados al mundo de los deportes, desde ejercicios básicos hasta los mas extenuantes."
-                    /> 
+                    fecha="AGOSTO, 2021"
+                    estado="Pendiente"
+                    detalle="Practica / Actividad Física"
+                    />
                 </Col>
                 <Col md={3}>
-                    <Categoria 
+                    <Categoria
                     imagen="https://image.freepik.com/free-photo/lovely-asian-young-lady-portriat-happy-woman-lifestyle-concept_1150-9025.jpg"
                     titulo="Lectura"
                     texto="En esta categoria podras encontrar retos relacionados al mundo de la literatura.Desde encontrar esa motivación para descubrir libros nuevos hasta retos para mejorar tus tiempos de lectura."
-                    /> 
-                </Col> 
-                
-        
+                    fecha="AGOSTO, 2021"
+                    estado="Pendiente"
+                    detalle="Practica / Lectura"
+                    />
+                </Col>
+
+
             </Row>
         </div>
-     
-        
-        
+
+
+
         </div>
     )
 }
