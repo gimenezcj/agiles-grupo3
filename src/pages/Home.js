@@ -23,14 +23,15 @@ function Home() {
     <Fragment>
       <StyledNavbar />
       <Container className="text-center">
-        <div className="mt-5">
-        <label className="mx-4">Retos Solitario/Grupales</label>
-        <Switch onClick={filterRetos}/>
-        </div>
+       
         {
           habitos.length === 0
             ? <p className="mt-5">Agrega un habito para empezar!</p>
             : (<Container className="my-5">
+               <div className="mt-5 my-5" >
+                  <label className="mx-4">Retos Solitario/Grupales</label>
+                  <Switch onClick={filterRetos}/>
+              </div>
               <Row style={{ justifyContent: "center" }}>
 
                 {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto} key={`reto-key-${i}`}/> : null)) 
