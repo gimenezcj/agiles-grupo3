@@ -1,5 +1,5 @@
-import { getFirestore, doc, getDoc, collection, getDocs, addDoc, deleteDoc, setDoc} from 'firebase/firestore';
-import { Reto, retoConverter } from '../model/Reto'
+import { getFirestore, doc, getDoc, collection, getDocs, deleteDoc, setDoc } from 'firebase/firestore';
+import { retoConverter } from '../model/Reto'
 import app from '../data_source/firebase-config'
 
 /**
@@ -31,7 +31,7 @@ export async function getRetos() {
   let retosList = [];
   let query = collection(db, RETOS_PATH).withConverter(retoConverter);
   let result = await getDocs(query);
-  result.docs.map(doc => {
+  result.docs.forEach(doc => {
     let reto = doc.data()
     reto.id = doc.id
     retosList.push(reto)
@@ -45,18 +45,18 @@ export async function getRetoById(id) {
   const reto = retoSnapshot.data();
   reto.id = retoSnapshot.id;
   return reto;
- }
+}
 
-export async function addReto(reto) { 
+export async function addReto(reto) {
   reto.dailyTimestamp = new Date().getTime();
   const retoRef = doc(collection(db, RETOS_PATH)).withConverter(retoConverter);
   await setDoc(retoRef, reto);
- }
+}
 
-export async function updateReto(reto) { 
+export async function updateReto(reto) {
   await setDoc(doc(db, RETOS_PATH, reto.id).withConverter(retoConverter), reto);
 }
 
 export async function deleteRetoById(id) {
   await deleteDoc(doc(db, RETOS_PATH, id));
- }
+}

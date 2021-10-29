@@ -5,7 +5,6 @@ import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import NavbarBrand from "react-bootstrap/NavbarBrand";
 import { Link } from "react-router-dom";
 
-
 import "./StyledNavbar.css";
 
 function StyledNavbar() {
@@ -36,7 +35,7 @@ function StyledNavbar() {
       <div id="sidebar">
         <Container>
           <h4 className="text-center mt-4">Desafíame</h4>
-          <hr/>
+          <hr />
           <Link className="nav-link active text-center mt-4" to="/categorias"><h4>Categorias</h4></Link>
           <Link className="nav-link active text-center mt-4" to="/modificar"><h4>Modificar</h4></Link>
           <Link className="nav-link active text-center mt-4" to="/agregar"><h4>Agregar</h4></Link>

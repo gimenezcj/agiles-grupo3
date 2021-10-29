@@ -2,9 +2,10 @@
   display: block;
   position: absolute;
   top: 56px;
-  z-index: 10;
+  z-index: 100;
   height: calc(100% - 56px);
   width: 220px;
+  background-color: white;
   box-shadow: 6px 0px 21px -9px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 6px 0px 21px -9px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 6px 0px 21px -9px rgba(0, 0, 0, 0.75);
@@ -13,4 +14,3 @@
 #sidebar.close {
   display: none;
 }
-

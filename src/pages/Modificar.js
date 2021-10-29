@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Reto from "../components/Reto";
+import Reto from "../components/Reto/Reto";
 import FormModificar from "../components/FormModificar";
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 
@@ -19,7 +19,7 @@ function Modificar() {
           setModalShow={setModalShow}
           title={title}
           description={description}
-          bsPrefix="https://static.wixstatic.com/media/0009e0_cc8e33a01f80407e92e0bb451024e15b~mv2.png"
+          image="https://static.wixstatic.com/media/0009e0_cc8e33a01f80407e92e0bb451024e15b~mv2.png"
         />
       </div>
 
