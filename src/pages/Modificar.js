@@ -10,10 +10,6 @@ function Modificar() {
     "Esta es la descripción del reto"
   );
 
-  useEffect(() => {
-    console.log(title);
-  }, [title]);
-
   return (
     <div>
       <StyledNavbar />
@@ -30,8 +26,6 @@ function Modificar() {
       <FormModificar
         show={modalShow}
         onHide={() => setModalShow(false)}
-        setTitle={setTitle}
-        setDescription={setDescription}
         setModalShow={setModalShow}
       />
     </div>
