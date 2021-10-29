@@ -1,19 +1,16 @@
 import { Fragment, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-
-import Retos from "../components/Reto/Retos";
+import Reto from "../components/Reto/Reto"
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 import StyledButton from "../components/StyledButton";
-
+import { Row } from 'react-bootstrap'
 import { getRetos } from "../data/repository/RetoRepository";
 
 function Home() {
-  const [retos, setRetos] = useState([]);
+  const [habitos, setHabitos] = useState([]);
 
   useEffect(() => {
-    getRetos().then(retos =>
-      setRetos(retos)
-    )
+    getRetos().then(data => setHabitos(data));
   }, [])
 
   return (
@@ -21,9 +18,13 @@ function Home() {
       <StyledNavbar />
       <Container className="text-center">
         {
-          retos.length === 0
+          habitos.length === 0
             ? <p className="mt-5">Agrega un habito para empezar!</p>
-            : <Retos retos={retos} />
+            : (<Container className="my-5">
+              <Row style={{ justifyContent: "center" }}>
+                {habitos.map((reto, i) => <Reto reto={reto} key={`reto-key-${i}`} />)}
+              </Row>
+            </Container>)
         }
         <StyledButton />
       </Container>
