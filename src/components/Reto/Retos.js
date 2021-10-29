@@ -3,7 +3,6 @@ import { Container, Row } from 'react-bootstrap';
 import Reto from './Reto';
 
 function Retos({ retos }) {
-  console.log(retos)
   return (
     <Container className="my-5">
       <Row style={{ justifyContent: "center" }}>
