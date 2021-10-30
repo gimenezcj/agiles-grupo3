@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Agregar from "./pages/Agregar";
-import Modificar from "./pages/Modificar";
 import Categorias from "./pages/Categorias";
 import Perfil from "./pages/Perfil";
 
@@ -13,9 +12,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
-          </Route>
-          <Route path="/modificar">
-            <Modificar />
           </Route>
           <Route path="/agregar">
             <Agregar />

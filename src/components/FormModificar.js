@@ -3,11 +3,6 @@ import { Modal, Button, Form } from "react-bootstrap";
 import * as database from "../data/repository/RetoRepository";
 
 function FormModificar({ show, onHide, setModalShow, reto }) {
-  const [titulo, setTitulo] = React.useState("");
-  const [descripcion, setDescripcion] = React.useState("");
-  const [inicio, setInicio] = React.useState("");
-  const [fin, setFin] = React.useState("");
-  const [categoria, setCategoria] = React.useState("");
   const [retoActual, setRetoActual] = React.useState({});
 
   const submit = async (e) => {

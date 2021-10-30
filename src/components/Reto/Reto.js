@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, Row, Col, Image, Button } from "react-bootstrap";
 import { GrEdit } from 'react-icons/gr';
 import FormModificar from "../../components/FormModificar";
 
 function Reto({ reto = {} }) {
   const [modalShow, setModalShow] = React.useState(false);
+  const [lessThanHour, setLessThanHour] = React.useState(false);
 
+useEffect(()=>{
+ const date1 = reto.dailyTimestamp
+  const date2 = new Date().getTime()
+  var OneDay = new Date().getTime() + (1 * 24 * 60 * 60 * 1000)
+  const diffTime = Math.abs(date2 - date1);
+  setLessThanHour(diffTime < OneDay)
+})
   return (
     <Col sm={4}>
       <Card className="my-1 border-primary border-5 border-bottom-0 border-end-0 border-top-0 shadow-sm bg-body rounded">
