@@ -20,6 +20,9 @@ function App() {
           <Route path="/categorias">
             <Categorias />
           </Route>
+          <Route path="/perfil">
+            <Perfil />
+          </Route>
           <Route path="/retos">
             <Retos />
           </Route>

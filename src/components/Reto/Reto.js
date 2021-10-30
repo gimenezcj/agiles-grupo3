@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
 import { GrEdit } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
@@ -28,22 +28,22 @@ function Reto({ reto = {} }) {
     categoria === "Fisico"
       ? imgFisico
       : categoria === "Correr"
-      ? imgCorrer
-      : categoria === "Healthy"
-      ? imgHealthy
-      : categoria === "Mental"
-      ? imgMental
-      : imgCustom;
+        ? imgCorrer
+        : categoria === "Healthy"
+          ? imgHealthy
+          : categoria === "Mental"
+            ? imgMental
+            : imgCustom;
 
   const capitalize = (str) =>
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
 
   const updateReto = () => {
-    if(!complete){
-      reto.dailyTimestamp= new Date().getTime()
+    if (!complete) {
+      reto.dailyTimestamp = new Date().getTime()
       database.updateReto(reto);
-    }else{
-      reto.dailyTimestamp= new Date().getTime() - (1000 * 60 * 60 * 24 * 5)
+    } else {
+      reto.dailyTimestamp = new Date().getTime() - (1000 * 60 * 60 * 24 * 5)
       database.updateReto(reto);
     }
     setComplete(!complete);
