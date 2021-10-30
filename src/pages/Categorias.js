@@ -15,23 +15,23 @@ const Categorias = () =>{
             <Row>
                 <Col md={3} className="mx-5">
                     <Categoria
-                    imagen="https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg"
-                    titulo="Programación"
+                    imagen="https://image.freepik.com/free-photo/young-man-runner-tying-shoelaces_1421-46.jpg"
+                    titulo="Running"
                     texto="En esta categoria podras encontrar retos relacionados al mundo de la programación , desde la logica basica, hasta los algoritmos más complejos."
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
-                    detalle="Practica / Programacion"
+                    detalle="Practica / Running"
                     />
                 </Col>
 
                 <Col md={3} className="mx-5">
                     <Categoria
-                    imagen="https://image.freepik.com/free-photo/high-school-students-working-international-flags-board_53876-78434.jpg"
-                    titulo="Idiomas"
+                    imagen="https://image.freepik.com/free-photo/girl-granola-honey-blue-white-natural_1428-679.jpg"
+                    titulo="Healthy"
                     texto="En esta categoria podras encontrar retos relacionados al aprendizaje de los distintos idiomas del mundo, desde completar oraciones, hasta cuestionarios de comprensión de lectura."
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
-                    detalle="Practica / Idiomas"
+                    detalle="Practica / Healthy"
                     />
                 </Col>
 
@@ -47,12 +47,12 @@ const Categorias = () =>{
                 </Col>
                 <Col md={3} className="mx-5 mt-5">
                     <Categoria
-                    imagen="https://image.freepik.com/free-photo/lovely-asian-young-lady-portriat-happy-woman-lifestyle-concept_1150-9025.jpg"
-                    titulo="Lectura"
-                    texto="En esta categoria podras encontrar retos relacionados al mundo de la literatura.Desde encontrar esa motivación para descubrir libros nuevos hasta retos para mejorar tus tiempos de lectura."
+                    imagen="https://image.freepik.com/free-vector/flat-thinking-concept_23-2148163823.jpg"
+                    titulo="Mental"
+                    texto="En esta categoria podras encontrar retos mentales como acertijos, crucigramas, etc.Desde encontrar esa motivación para descubrir libros nuevos hasta retos para mejorar tus tiempos de lectura."
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
-                    detalle="Practica / Lectura"
+                    detalle="Practica / Mental"
                     />
                 </Col>
 
