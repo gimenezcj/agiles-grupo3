@@ -26,15 +26,19 @@ function Agregar() {
                 </div>
               </div>
               <div class="form-group">
-                <select class="form-select form-select-lg mb-3">
-                  <option selected>#amigo1</option>
-                  <option value="1">#Agustin</option>
+                <select class="form-select  mb-3">
+                  <option selected>Amigos</option>
+                  <option value="1">Amigo 1</option>
+                  <option value="2">Amigo 2</option>
+                  <option value="3">Amigo 3</option>
                 </select>
               </div>
               <div class="form-group">
-                <select class="form-select form-select-lg mb-3">
-                  <option selected>Categoria</option>
-                  <option value="1">Leer</option>
+                <select class="form-select mb-3">
+                  <option selected>Categoris</option>
+                  <option value="Leer">Leer</option>
+                  <option value="Escribir">Escribir</option>
+                  <option value="Correr">Correr</option>
                 </select>
               </div>
               <div class="form-group mb-3">
@@ -47,11 +51,7 @@ function Agregar() {
                     class="form-control py-2 border-right-0 border"
                     type="date"
                   />
-                  <span class="input-group-append ml-n1">
-                    <div class="input-group-text bg-transparent">
-                      <i class="fa fa-calendar-alt"></i>
-                    </div>
-                  </span>
+             
                 </div>
               </div>
 

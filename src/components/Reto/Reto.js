@@ -1,6 +1,7 @@
 import React from "react";
-import { Card, Row, Col, Image, Button, Container } from "react-bootstrap";
+import { Card, Col, Image, Button, Container } from "react-bootstrap";
 import { GrEdit } from 'react-icons/gr';
+import FormModificar from "../../components/FormModificar";
 
 import "./Reto.css";
 
@@ -10,13 +11,14 @@ import imgFisico from "../../images/Fisico.png"
 import imgHealthy from "../../images/Healthy.png"
 import imgMental from "../../images/Mental.png"
 
-function Reto({ reto = {}, setModalShow }) {
+function Reto({ reto = {} }) {
+  const [modalShow, setModalShow] = React.useState(false);
 
   const getSrc = ({ categoria }) => (
     categoria === "Fisico" ? imgFisico :
       categoria === "Correr" ? imgCorrer :
         categoria === "Healthy" ? imgHealthy :
-          categoria ==== "Mental" ? imgMental : imgCustom
+          categoria === "Mental" ? imgMental : imgCustom
   )
 
   const capitalize = (str) => str.toLowerCase().replace(/^\w/,
@@ -37,6 +39,7 @@ function Reto({ reto = {}, setModalShow }) {
           </Card.Body>
           <div className="footer">
             <Button
+              id="editButton"
               variant="primary"
               onClick={() => setModalShow(true)}
               className="rounded-circle"
@@ -46,6 +49,13 @@ function Reto({ reto = {}, setModalShow }) {
           </div>
         </Container>
       </Card>
+
+      <FormModificar
+        reto={reto}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        setModalShow={setModalShow}
+      />
     </Col>
   )
 }

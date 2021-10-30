@@ -13,7 +13,7 @@ const Categorias = () =>{
         <h1 className="display-4" style={{textAlign:'center' , marginTop:'50px' , marginBottom:'50px'}}>Categorias</h1>
         <div className='container'>
             <Row>
-                <Col md={3}>
+                <Col md={3} className="mx-5">
                     <Categoria
                     imagen="https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg"
                     titulo="Programación"
@@ -24,7 +24,7 @@ const Categorias = () =>{
                     />
                 </Col>
 
-                <Col md={3}>
+                <Col md={3} className="mx-5">
                     <Categoria
                     imagen="https://image.freepik.com/free-photo/high-school-students-working-international-flags-board_53876-78434.jpg"
                     titulo="Idiomas"
@@ -35,7 +35,7 @@ const Categorias = () =>{
                     />
                 </Col>
 
-                <Col md={3}>
+                <Col md={3} className="mx-5">
                     <Categoria
                     imagen="https://image.freepik.com/free-photo/sports-tools_53876-138077.jpg"
                     titulo="Actividad Física"
@@ -45,7 +45,7 @@ const Categorias = () =>{
                     detalle="Practica / Actividad Física"
                     />
                 </Col>
-                <Col md={3}>
+                <Col md={3} className="mx-5 mt-5">
                     <Categoria
                     imagen="https://image.freepik.com/free-photo/lovely-asian-young-lady-portriat-happy-woman-lifestyle-concept_1150-9025.jpg"
                     titulo="Lectura"
