@@ -56,10 +56,10 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                 </div>
                 <div class="form-group">
                   <select class="form-select mb-3">
-                    <option selected>Amigos</option>
-                    <option value="1">Amigo 1</option>
-                    <option value="2">Amigo 2</option>
-                    <option value="3">Amigo 3</option>
+                    <option selected>Amigo</option>
+                    <option value="1">Fernando</option>
+                    <option value="2">Francisco</option>
+                    <option value="3">Pepe</option>
                   </select>
                 </div>
                 <div class="form-group">
