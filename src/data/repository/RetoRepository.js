@@ -25,16 +25,16 @@ import app from '../data_source/firebase-config'
 
 
 const db = getFirestore(app);
-const RETOS_PATH = "retos"
+const RETOS_PATH = "retos";
 
 export async function getRetos() {
   let retosList = [];
   let query = collection(db, RETOS_PATH).withConverter(retoConverter);
   let result = await getDocs(query);
   result.docs.forEach(doc => {
-    let reto = doc.data()
-    reto.id = doc.id
-    retosList.push(reto)
+    let reto = doc.data();
+    reto.id = doc.id;
+    retosList.push(reto);
   });
   return retosList;
 }
@@ -48,7 +48,7 @@ export async function getRetoById(id) {
 }
 
 export async function addReto(reto) {
-  reto.dailyTimestamp = new Date().getTime();
+  reto.dailyTimestamp = new Date().getTime() - (1000 * 60 * 60 * 24 * 5);
   const retoRef = doc(collection(db, RETOS_PATH)).withConverter(retoConverter);
   await setDoc(retoRef, reto);
 }
