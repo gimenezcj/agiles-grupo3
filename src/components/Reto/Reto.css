@@ -1,0 +1,18 @@
+.centrar {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagen, .body, .footer {
+  display: inline-block;
+  width: 33%;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.body * {
+  padding-left: 15px;
+}
