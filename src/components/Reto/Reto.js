@@ -1,8 +1,10 @@
 import React from "react";
 import { Card, Row, Col, Image, Button } from "react-bootstrap";
 import { GrEdit } from 'react-icons/gr';
+import FormModificar from "../../components/FormModificar";
 
-function Reto({ reto = {}, setModalShow }) {
+function Reto({ reto = {} }) {
+  const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <Col sm={4}>
@@ -27,6 +29,13 @@ function Reto({ reto = {}, setModalShow }) {
           </Col>
         </Row>
       </Card>
+
+      <FormModificar
+        reto={reto}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        setModalShow={setModalShow}
+      />
     </ Col>
   )
 }

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Reto from "../components/Reto/Reto"
 import StyledNavbar from "../components/Navbar/StyledNavbar";
@@ -34,13 +34,15 @@ function Home() {
               </div>
               <Row style={{ justifyContent: "center" }}>
 
-                {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto} key={`reto-key-${i}`}/> : null)) 
-                : (habitos.map((reto, i) => reto.isConAmigos===false ? <Reto reto={reto} key={`reto-key-${i}`}/> : null))}
+                {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto}  key={`reto-key-${i}`}/> : null)) 
+                : (habitos.map((reto, i) => reto.isConAmigos===false ? <Reto reto={reto}  key={`reto-key-${i}`}/> : null))}
               </Row>
             </Container>)
         }
         <StyledButton />
       </Container>
+      
+  
     </Fragment>
   );
 }

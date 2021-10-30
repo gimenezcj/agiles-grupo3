@@ -2,35 +2,35 @@ import React, { useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import * as database from "../data/repository/RetoRepository";
 
-function FormModificar({ show, onHide, setModalShow }) {
+function FormModificar({ show, onHide, setModalShow, reto }) {
   const [titulo, setTitulo] = React.useState("");
   const [descripcion, setDescripcion] = React.useState("");
   const [inicio, setInicio] = React.useState("");
   const [fin, setFin] = React.useState("");
   const [categoria, setCategoria] = React.useState("");
+  const [retoActual, setRetoActual] = React.useState({});
 
   const submit = async (e) => {
     e.preventDefault();
 
-    var reto = {
-      id: "1",
-      title: titulo,
-      description: descripcion,
-      categoria: categoria,
-      fechaInic: inicio,
-      fechFin: fin,
-      isConAmigos: false,
-      dailyTimestamp: 0,
-    };
-
-    database.updateReto(reto);
+    database.updateReto(retoActual);
 
     setModalShow(false);
   };
 
-  useEffect(() => {
-    database.getRetos().then((retos) => console.log(retos));
-  }, []);
+
+  useEffect(()=>{
+    setRetoActual(reto)
+  })
+
+  const handleChange =(name, value)=>{
+    Object.keys(retoActual).forEach((key)=>{
+      if(key === name){
+        retoActual[key]=value
+      }
+    })
+  }
+
   return (
     <Modal
       show={show}
@@ -51,10 +51,11 @@ function FormModificar({ show, onHide, setModalShow }) {
                 <div class="form-group">
                   <div class="form-floating mb-3">
                     <input
+                      defaultValue={reto.title}
                       type="text"
                       class="form-control"
                       id="floatingInput"
-                      onChange={(e) => setTitulo(e.target.value)}
+                      onChange={(e) => handleChange('title', e.target.value)}
                     />
                     <label for="inputTitle">Titulo</label>
                   </div>
@@ -70,25 +71,39 @@ function FormModificar({ show, onHide, setModalShow }) {
                 <div class="form-group">
                   <select
                     class="form-select mb-3"
-                    onChange={(e) => setCategoria(e.target.value)}
+                    onChange={(e) => handleChange('categoria',e.target.value)}
                   >
                     <option selected>Categorias</option>
-                    <option value="Leer">Leer</option>
-                    <option value="Correr">Correr</option>
-                    <option value="Escribir">Escribir</option>
+                    <option selected={reto.categoria === "Leer"} value="Leer">
+                      Leer
+                    </option>
+                    <option
+                      selected={reto.categoria === "Correr"}
+                      value="Correr"
+                    >
+                      Correr
+                    </option>
+                    <option
+                      selected={reto.categoria === "Escribir"}
+                      value="Escribir"
+                    >
+                      Escribir
+                    </option>
                   </select>
                 </div>
                 <div class="form-group mb-3">
                   <div class="input-group">
                     <input
+                      defaultValue={reto.fechaInic}
                       class="form-control py-2 border-right-0 border"
                       type="date"
-                      onChange={(e) => setInicio(e.target.value)}
+                      onChange={(e) => handleChange('fechaInic', e.target.value)}
                     />
                     <input
+                      defaultValue={reto.fechFin}
                       class="form-control py-2 border-right-0 border"
                       type="date"
-                      onChange={(e) => setFin(e.target.value)}
+                      onChange={(e) => handleChange('fechFin',e.target.value)}
                     />
                   </div>
                 </div>
@@ -96,9 +111,10 @@ function FormModificar({ show, onHide, setModalShow }) {
                 <div class="form-group">
                   <div class="form-floating mb-3">
                     <textarea
+                      defaultValue={reto.description}
                       class="form-control"
                       id="floatingTextarea"
-                      onChange={(e) => setDescripcion(e.target.value)}
+                      onChange={(e) => handleChange('description', e.target.value)}
                     ></textarea>
                     <label for="floatingTextarea">Descripcion</label>
                   </div>
