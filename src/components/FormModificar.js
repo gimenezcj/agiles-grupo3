@@ -14,16 +14,16 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
   };
 
   useEffect(() => {
-    setRetoActual(reto)
-  })
+    setRetoActual(reto);
+  });
 
   const handleChange = (name, value) => {
     Object.keys(retoActual).forEach((key) => {
       if (key === name) {
-        retoActual[key] = value
+        retoActual[key] = value;
       }
-    })
-  }
+    });
+  };
 
   return (
     <Modal
@@ -49,7 +49,7 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                       type="text"
                       class="form-control"
                       id="floatingInput"
-                      onChange={(e) => handleChange('title', e.target.value)}
+                      onChange={(e) => handleChange("title", e.target.value)}
                     />
                     <label for="inputTitle">Titulo</label>
                   </div>
@@ -65,10 +65,13 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                 <div class="form-group">
                   <select
                     class="form-select mb-3"
-                    onChange={(e) => handleChange('categoria', e.target.value)}
+                    onChange={(e) => handleChange("categoria", e.target.value)}
                   >
                     <option selected>Categorias</option>
-                    <option selected={reto.categoria === "Fisico"} value="Fisico">
+                    <option
+                      selected={reto.categoria === "Fisico"}
+                      value="Fisico"
+                    >
                       Fisico
                     </option>
                     <option
@@ -103,13 +106,15 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                       defaultValue={reto.fechaInic}
                       class="form-control py-2 border-right-0 border"
                       type="date"
-                      onChange={(e) => handleChange('fechaInic', e.target.value)}
+                      onChange={(e) =>
+                        handleChange("fechaInic", e.target.value)
+                      }
                     />
                     <input
                       defaultValue={reto.fechFin}
                       class="form-control py-2 border-right-0 border"
                       type="date"
-                      onChange={(e) => handleChange('fechFin', e.target.value)}
+                      onChange={(e) => handleChange("fechFin", e.target.value)}
                     />
                   </div>
                 </div>
@@ -120,7 +125,9 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                       defaultValue={reto.description}
                       class="form-control"
                       id="floatingTextarea"
-                      onChange={(e) => handleChange('description', e.target.value)}
+                      onChange={(e) =>
+                        handleChange("description", e.target.value)
+                      }
                     ></textarea>
                     <label for="floatingTextarea">Descripcion</label>
                   </div>
