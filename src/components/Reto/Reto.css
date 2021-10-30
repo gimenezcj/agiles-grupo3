@@ -9,6 +9,7 @@
 .imagen, .body, .footer {
   display: inline-block;
   width: 33%;
+  min-width: fit-content;
   margin: auto;
   vertical-align: middle;
 }
@@ -19,4 +20,23 @@
 
 #editButton svg path {
   stroke: #fff;
+}
+
+.completo{
+  background-color: green;
+  text-align: center;
+  width: 100px;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.incompleto{
+  background-color: grey;
+  text-align: center;
+  width: 100px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 30px;
 }
