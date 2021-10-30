@@ -19,14 +19,14 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
   };
 
 
-  useEffect(()=>{
+  useEffect(() => {
     setRetoActual(reto)
   })
 
-  const handleChange =(name, value)=>{
-    Object.keys(retoActual).forEach((key)=>{
-      if(key === name){
-        retoActual[key]=value
+  const handleChange = (name, value) => {
+    Object.keys(retoActual).forEach((key) => {
+      if (key === name) {
+        retoActual[key] = value
       }
     })
   }
@@ -71,11 +71,11 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                 <div class="form-group">
                   <select
                     class="form-select mb-3"
-                    onChange={(e) => handleChange('categoria',e.target.value)}
+                    onChange={(e) => handleChange('categoria', e.target.value)}
                   >
                     <option selected>Categorias</option>
-                    <option selected={reto.categoria === "Leer"} value="Leer">
-                      Leer
+                    <option selected={reto.categoria === "Fisico"} value="Fisico">
+                      Fisico
                     </option>
                     <option
                       selected={reto.categoria === "Correr"}
@@ -84,10 +84,22 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                       Correr
                     </option>
                     <option
-                      selected={reto.categoria === "Escribir"}
-                      value="Escribir"
+                      selected={reto.categoria === "Mental"}
+                      value="Mental"
                     >
-                      Escribir
+                      Mental
+                    </option>
+                    <option
+                      selected={reto.categoria === "Healthy"}
+                      value="Healthy"
+                    >
+                      Healthy
+                    </option>
+                    <option
+                      selected={reto.categoria === "Custom"}
+                      value="Custom"
+                    >
+                      Custom
                     </option>
                   </select>
                 </div>
@@ -103,7 +115,7 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                       defaultValue={reto.fechFin}
                       class="form-control py-2 border-right-0 border"
                       type="date"
-                      onChange={(e) => handleChange('fechFin',e.target.value)}
+                      onChange={(e) => handleChange('fechFin', e.target.value)}
                     />
                   </div>
                 </div>
@@ -125,10 +137,10 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
 
           <Modal.Footer>
             <Button variant="primary" type="submit">
-              Submit
+              Guardar
             </Button>
             <Button variant="danger" onClick={onHide}>
-              Close
+              Cerrar
             </Button>
           </Modal.Footer>
         </Form>

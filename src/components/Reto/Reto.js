@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
 import { GrEdit } from 'react-icons/gr';
 import FormModificar from "../../components/FormModificar";
@@ -12,7 +12,7 @@ import imgHealthy from "../../images/Healthy.png"
 import imgMental from "../../images/Mental.png"
 
 function Reto({ reto = {} }) {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   const getSrc = ({ categoria }) => (
     categoria === "Fisico" ? imgFisico :
