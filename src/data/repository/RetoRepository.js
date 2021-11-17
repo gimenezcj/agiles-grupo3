@@ -60,3 +60,4 @@ export async function updateReto(reto) {
 export async function deleteRetoById(id) {
   await deleteDoc(doc(db, RETOS_PATH, id));
 }
+

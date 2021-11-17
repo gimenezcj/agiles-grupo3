@@ -14,7 +14,7 @@ class User {
   }
   
   // Firestore data converter
-  const retoConverter = {
+  const userConverter = {
     toFirestore: (user) => {
       return {
         name: user.name,
@@ -24,7 +24,7 @@ class User {
     },
     fromFirestore: (snapshot, options) => {
       const data = snapshot.data(options);
-      return new Reto(
+      return new User(
         data.name,
         data.mail,
         data.retoList,
@@ -33,7 +33,7 @@ class User {
   };
   
   module.exports = {
-    retoConverter,
+    userConverter,
     User,
   };
   
