@@ -8,7 +8,7 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
   const submit = async (e) => {
     e.preventDefault();
 
-    database.updateReto(retoActual);
+//    database.updateReto(retoActual);
 
     setModalShow(false);
   };

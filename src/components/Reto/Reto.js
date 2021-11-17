@@ -13,7 +13,7 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto = {},lista={} }) {
+function Reto({ reto = {},eliminar=()=>{}}) {
   const [modalShow, setModalShow] = React.useState(false);
   const [modalShowEliminar, setModalShowEliminar] = React.useState(false);
   const [complete, setComplete] = React.useState(false);
@@ -113,7 +113,7 @@ function Reto({ reto = {},lista={} }) {
       />
 
       <FormEliminar
-        lista={lista}
+        eliminar={eliminar}
         reto={reto}
         show={modalShowEliminar}
         onHide={() => setModalShowEliminar(false)}
