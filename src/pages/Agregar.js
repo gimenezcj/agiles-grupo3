@@ -1,11 +1,14 @@
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 import * as database from "../data/repository/RetoRepository";
+import {Reto} from "../data/model/Reto";
 import React, { useState } from "react";
+import Spinner from 'react-bootstrap/Spinner'
 
 function Agregar() {
+  const [showWait, setshowWait] = React.useState(false)
   const [form, setForm] = useState({
     titulo: "",
-    amigo: "",
+    amigo: -1,
     categoria: "",
     fechaIn: "",
     fechaFn: "",
@@ -19,15 +22,19 @@ function Agregar() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(form);
-    setForm({
-      titulo: "",
-      amigo: "",
-      categoria: "",
-      fechaIn: "",
-      fechaFn: "",
-      descripcion: "",
-    });
+//    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
+setshowWait(true);
+ database.addReto( new Reto(form.titulo,form.descripcion,form.categoria,form.fechaIn,form.fechaFn, form.amigo>0)).then(()=>{setshowWait(false);window.location = '/';});
+
+ //console.log(form.amigo);
+//    setForm({
+//      titulo: "",
+//      amigo: "",
+//      categoria: "",
+//      fechaIn: "",
+//      fechaFn: "",
+//      descripcion: "",
+//    });
   };
 
   return (
@@ -67,7 +74,7 @@ function Agregar() {
                   onChange={(e) => handleChange(e)}
                   class="form-select  mb-3"
                 >
-                  <option selected>Amigo</option>
+                  <option selected value="-1">Amigo</option>
                   <option value="1">Fernando</option>
                   <option value="2">Francisco</option>
                   <option value="3">Pepe</option>
@@ -145,9 +152,13 @@ function Agregar() {
                 </div>
               </div>
               <div class="row d-flex justify-content-center mb-3">
-                <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
+
+                {showWait?
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>: <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
                   Agregar
-                </button>
+                </button>}
               </div>
             </form>
           </div>

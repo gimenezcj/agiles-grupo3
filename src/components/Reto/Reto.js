@@ -54,6 +54,7 @@ function Reto({ reto = {},lista={} }) {
     setComplete(!complete);
 
   };
+
   return (
     <Col sm={4}>
       <Card
