@@ -56,7 +56,7 @@ function Reto({ reto = {},eliminar=()=>{}}) {
   };
 
   return (
-    <Col sm={4}>
+    <Col sm={5}>
       <Card
         className="my-1 border-primary border-5 border-bottom-0 \
       border-end-0 border-top-0 shadow bg-body rounded centrar"
@@ -90,14 +90,14 @@ function Reto({ reto = {},eliminar=()=>{}}) {
               id="editButton"
               variant="primary"
               onClick={() => setModalShow(true)}
-              className="rounded-circle"
+              className="rounded-circle mx-2"
             >
               <GrEdit />
             </Button>
             <Button
               id="removeButton"
               variant="danger"
-              className="rounded-circle"
+              className="rounded-circle mx-2"
               onClick={() => setModalShowEliminar(true)}
             >
             <GrTrash/>
