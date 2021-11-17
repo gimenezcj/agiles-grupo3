@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
-import { GrEdit } from "react-icons/gr";
+import { GrEdit,GrTrash } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
+import FormEliminar  from "../../components/ModalEliminar";
 import * as database from '../../data/repository/RetoRepository';
 
 import "./Reto.css";
@@ -12,8 +13,9 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto = {} }) {
+function Reto({ reto = {},lista={} }) {
   const [modalShow, setModalShow] = React.useState(false);
+  const [modalShowEliminar, setModalShowEliminar] = React.useState(false);
   const [complete, setComplete] = React.useState(false);
 
   useEffect(() => {
@@ -23,6 +25,9 @@ function Reto({ reto = {} }) {
     const diffTime = Math.abs(date2 - date1);
     setComplete(diffTime < OneDay);
   }, []);
+
+
+
 
   const getSrc = ({ categoria }) =>
     categoria === "Fisico"
@@ -79,6 +84,7 @@ function Reto({ reto = {} }) {
             </p>
           </Card.Body>
           <div className="footer">
+
             <Button
               id="editButton"
               variant="primary"
@@ -86,6 +92,14 @@ function Reto({ reto = {} }) {
               className="rounded-circle"
             >
               <GrEdit />
+            </Button>
+            <Button
+              id="removeButton"
+              variant="danger"
+              className="rounded-circle"
+              onClick={() => setModalShowEliminar(true)}
+            >
+            <GrTrash/>
             </Button>
           </div>
         </Container>
@@ -96,6 +110,14 @@ function Reto({ reto = {} }) {
         show={modalShow}
         onHide={() => setModalShow(false)}
         setModalShow={setModalShow}
+      />
+
+      <FormEliminar
+        lista={lista}
+        reto={reto}
+        show={modalShowEliminar}
+        onHide={() => setModalShowEliminar(false)}
+        setModalShow={setModalShowEliminar}
       />
     </Col>
   );
