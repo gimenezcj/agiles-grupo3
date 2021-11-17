@@ -2,29 +2,15 @@ import React, { useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import * as database from "../data/repository/RetoRepository";
 
-function FormEliminar({ lista,show, onHide, setModalShow, reto }) {
+function FormEliminar({ eliminar,show, onHide, setModalShow, reto }) {
   const [retoActual, setRetoActual] = React.useState({});
+  const [habitos, setHabitos] = React.useState({})
 
   const submit = async (e) => {
     e.preventDefault();
-
-  //  database.deleteRetoById(reto.id);
-//    lista=lista.splice(lista.indexOf(reto), 1)
-
+    database.deleteRetoById(reto.id);
+    eliminar(reto);
     setModalShow(false);
-  };
-
-  useEffect(() => {
-    setRetoActual(null);
-//    lista=lista.splice(lista.indexOf(reto), 1);
-  });
-
-  const handleChange = (name, value) => {
-    Object.keys(retoActual).forEach((key) => {
-      if (key === name) {
-        retoActual[key] = value;
-      }
-    });
   };
 
   return (
