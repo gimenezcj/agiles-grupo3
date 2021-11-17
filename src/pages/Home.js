@@ -8,6 +8,7 @@ import { getRetos } from "../data/repository/RetoRepository";
 import {Switch} from "antd";
 
 function Home() {
+  
   const [habitos, setHabitos] = useState([]);
   const [toggle, setToggle] = useState(false);
 

@@ -2,6 +2,21 @@ import { getFirestore, doc, getDoc, collection, getDocs, deleteDoc, setDoc } fro
 import { userConverter } from '../model/User'
 import app from '../data_source/firebase-config'
 
+/**
+    //----------- imports -------------
+    import * as database from '../data/repository/UserRepository';
+    import {User} from '../data/model/User'
+
+    //---------simple examples:----------
+    //----------- add user ------------
+    let retos = []
+    retos.push("retoId1")
+    retos.push("retoId2")
+    database2.addUser(new User("fran", "fran@hotmail.com.ar", retos));
+    //----------- get all users -----------------
+    database.getUsers().then(users => console.log(users));
+ */
+
 const db = getFirestore(app);
 const USERS_PATH = "users";
 
@@ -25,7 +40,7 @@ export async function getUserById(id) {
   return user;
 }
 
-export async function addReto(user) {
+export async function addUser(user) {
   const userRef = doc(collection(db, USERS_PATH)).withConverter(userConverter);
   await setDoc(userRef, user);
 }

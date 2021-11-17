@@ -3,6 +3,7 @@ import * as database from "../data/repository/RetoRepository";
 import {Reto} from "../data/model/Reto";
 import React, { useState } from "react";
 import Spinner from 'react-bootstrap/Spinner'
+import * as database2 from '../data/repository/UserRepository';
 
 function Agregar() {
   const [showWait, setshowWait] = React.useState(false)
@@ -26,6 +27,7 @@ function Agregar() {
 setshowWait(true);
  database.addReto( new Reto(form.titulo,form.descripcion,form.categoria,form.fechaIn,form.fechaFn, form.amigo>0)).then(()=>{setshowWait(false);window.location = '/';});
 
+ 
  //console.log(form.amigo);
 //    setForm({
 //      titulo: "",
