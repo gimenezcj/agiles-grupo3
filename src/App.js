@@ -5,6 +5,7 @@ import Agregar from "./pages/Agregar";
 import Categorias from "./pages/Categorias";
 import Perfil from "./pages/Perfil";
 import Retos from "./pages/Retos";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/retos">
             <Retos />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
         </Switch>
       </Router>
