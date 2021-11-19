@@ -13,6 +13,7 @@ function Agregar() {
     categoria: "",
     fechaIn: "",
     fechaFn: "",
+    isDefault: false,
     descripcion: "",
   });
   const handleChange = (e) => {
@@ -25,7 +26,7 @@ function Agregar() {
     e.preventDefault();
 //    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
 setshowWait(true);
- database.addReto( new Reto(form.titulo,form.descripcion,form.categoria,form.fechaIn,form.fechaFn, form.amigo>0)).then(()=>{setshowWait(false);window.location = '/';});
+ database.addReto( new Reto(form.titulo,form.descripcion,form.categoria,form.fechaIn,form.fechaFn,form.isDefault, form.amigo>0)).then(()=>{setshowWait(false);window.location = '/';});
 
  
  //console.log(form.amigo);
