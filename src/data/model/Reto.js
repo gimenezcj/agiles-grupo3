@@ -6,6 +6,7 @@ class Reto {
     fechaInic,
     fechFin,
     isConAmigos,
+    isDefault,
     dailyTimestamp
   ) {
     this.title = title;
@@ -14,6 +15,7 @@ class Reto {
     this.fechaInic = fechaInic;
     this.fechFin = fechFin;
     this.isConAmigos = isConAmigos;
+    this.isDefault = isDefault;
     this.dailyTimestamp = dailyTimestamp;
   }
   toString() {
@@ -31,6 +33,7 @@ const retoConverter = {
       fechaInic: reto.fechaInic,
       fechFin: reto.fechFin,
       isConAmigos: reto.isConAmigos,
+      isDefault: reto.isDefault,
       dailyTimestamp: reto.dailyTimestamp,
     };
   },
@@ -43,6 +46,7 @@ const retoConverter = {
       data.fechaInic,
       data.fechFin,
       data.isConAmigos,
+      data.isDefault,
       data.dailyTimestamp
     );
   },

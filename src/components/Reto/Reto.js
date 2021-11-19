@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
-import { GrEdit } from "react-icons/gr";
+import { GrEdit,GrTrash } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
+import FormEliminar  from "../../components/ModalEliminar";
 import * as database from '../../data/repository/RetoRepository';
 
 import "./Reto.css";
@@ -12,9 +13,10 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto = {} }) {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [complete, setComplete] = React.useState(false);
+function Reto({ reto = {},eliminar=()=>{}}) {
+  const [modalShow, setModalShow] = useState(false);
+  const [modalShowEliminar, setModalShowEliminar] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     const date1 = reto.dailyTimestamp;
@@ -50,7 +52,7 @@ function Reto({ reto = {} }) {
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
 
   return (
-    <Col sm={4}>
+    <Col sm={5}>
       <Card
         className="my-1 border-primary border-5 border-bottom-0 \
       border-end-0 border-top-0 shadow bg-body rounded centrar"
@@ -79,13 +81,22 @@ function Reto({ reto = {} }) {
             </p>
           </Card.Body>
           <div className="footer">
+
             <Button
               id="editButton"
               variant="primary"
               onClick={() => setModalShow(true)}
-              className="rounded-circle"
+              className="rounded-circle mx-2"
             >
               <GrEdit />
+            </Button>
+            <Button
+              id="removeButton"
+              variant="danger"
+              className="rounded-circle mx-2"
+              onClick={() => setModalShowEliminar(true)}
+            >
+            <GrTrash/>
             </Button>
           </div>
         </Container>
@@ -96,6 +107,14 @@ function Reto({ reto = {} }) {
         show={modalShow}
         onHide={() => setModalShow(false)}
         setModalShow={setModalShow}
+      />
+
+      <FormEliminar
+        eliminar={eliminar}
+        reto={reto}
+        show={modalShowEliminar}
+        onHide={() => setModalShowEliminar(false)}
+        setModalShow={setModalShowEliminar}
       />
     </Col>
   );

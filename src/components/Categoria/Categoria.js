@@ -20,7 +20,7 @@ function Categoria(props) {
               <Col md={3}></Col>
               <Col md={6}>
                 <div className="d-grid gap-2">
-                <Link to="/retos">
+                <Link to={{pathname:"/retos", search:"categoria="+props.categoria }}>
                   <Button style={{"borderRadius": "60px"}} size="sm" variant="primary" rounded="true">Ver Retos</Button>
                 </Link>
                 </div>

@@ -1,13 +1,18 @@
 import StyledNavbar from "../components/Navbar/StyledNavbar";
+import * as database from "../data/repository/RetoRepository";
+import { Reto } from "../data/model/Reto";
 import React, { useState } from "react";
+import Spinner from 'react-bootstrap/Spinner'
 
 function Agregar() {
+  const [showWait, setshowWait] = React.useState(false)
   const [form, setForm] = useState({
     titulo: "",
-    amigo: "",
+    amigo: -1,
     categoria: "",
     fechaIn: "",
     fechaFn: "",
+    isDefault: false,
     descripcion: "",
   });
   const handleChange = (e) => {
@@ -18,14 +23,25 @@ function Agregar() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    setForm({
-      titulo: "",
-      amigo: "",
-      categoria: "",
-      fechaIn: "",
-      fechaFn: "",
-      descripcion: "",
+    //    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
+    setshowWait(true);
+    database.addReto(
+      new Reto(form.titulo, form.descripcion, form.categoria, form.fechaIn, form.fechaFn, form.isDefault, form.amigo > 0)
+    ).then(() => {
+      setshowWait(false);
+      window.location = '/';
     });
+
+
+    //console.log(form.amigo);
+    //    setForm({
+    //      titulo: "",
+    //      amigo: "",
+    //      categoria: "",
+    //      fechaIn: "",
+    //      fechaFn: "",
+    //      descripcion: "",
+    //    });
   };
 
   return (
@@ -65,7 +81,7 @@ function Agregar() {
                   onChange={(e) => handleChange(e)}
                   className="form-select  mb-3"
                 >
-                  <option selected>Amigo</option>
+                  <option selected value="-1">Amigo</option>
                   <option value="1">Fernando</option>
                   <option value="2">Francisco</option>
                   <option value="3">Pepe</option>
@@ -135,16 +151,25 @@ function Agregar() {
                   <label for="floatingTextarea">Descripcion</label>
                 </div>
               </div>
-              <div className="row d-flex justify-content-center mb-3">
-                <button onClick={(e) => onSubmit(e)} className="btn btn-primary">
-                  Agregar
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
+<<<<<<< HEAD
+  <div className="row d-flex justify-content-center mb-3">
+    <button onClick={(e) => onSubmit(e)} className="btn btn-primary">
+=======
+              <div class="row d-flex justify-content-center mb-3">
+
+        {showWait ?
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner> : <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
+>>>>>>> 26e5aac2eff05ce212f81539fac38f6ab789f22a
+            Agregar
+          </button>}
       </div>
-    </div>
+    </form>
+  </div>
+        </div >
+      </div >
+    </div >
   );
 }
 

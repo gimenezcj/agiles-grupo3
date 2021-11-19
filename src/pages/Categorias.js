@@ -21,6 +21,7 @@ const Categorias = () =>{
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
                     detalle="Practica / Running"
+                    categoria= "Correr"
                     />
                 </Col>
 
@@ -32,6 +33,7 @@ const Categorias = () =>{
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
                     detalle="Practica / Healthy"
+                    categoria="Healthy"
                     />
                 </Col>
 
@@ -43,6 +45,7 @@ const Categorias = () =>{
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
                     detalle="Practica / Actividad Física"
+                    categoria="Fisico"
                     />
                 </Col>
                 <Col md={3} className="mx-5 mt-5">
@@ -53,6 +56,7 @@ const Categorias = () =>{
                     fecha="AGOSTO, 2021"
                     estado="Pendiente"
                     detalle="Practica / Mental"
+                    categoria="Mental"
                     />
                 </Col>
 
