@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
 import { GrEdit } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
@@ -19,7 +19,7 @@ function Reto({ reto = {} }) {
   useEffect(() => {
     const date1 = reto.dailyTimestamp;
     const date2 = new Date().getTime();
-    var OneDay = 1 * 24 * 60 * 60 * 1000;
+    const OneDay = 1 * 24 * 60 * 60 * 1000;
     const diffTime = Math.abs(date2 - date1);
     setComplete(diffTime < OneDay);
   }, []);
@@ -35,9 +35,6 @@ function Reto({ reto = {} }) {
             ? imgMental
             : imgCustom;
 
-  const capitalize = (str) =>
-    str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
-
   const updateReto = () => {
     if (!complete) {
       reto.dailyTimestamp = new Date().getTime()
@@ -47,8 +44,11 @@ function Reto({ reto = {} }) {
       database.updateReto(reto);
     }
     setComplete(!complete);
-
   };
+
+  const capitalize = (str) =>
+    str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+
   return (
     <Col sm={4}>
       <Card

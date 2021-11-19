@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Container, Image } from "react-bootstrap";
 
 import StyledNavbar from "../components/Navbar/StyledNavbar";
-import StyledCalendar from "../components/StyledCalendar";
+import StyledCalendar from "../components/StyledCalendar/StyledCalendar";
 
 function Perfil() {
   return (
