@@ -151,22 +151,16 @@ function Agregar() {
                   <label for="floatingTextarea">Descripcion</label>
                 </div>
               </div>
-<<<<<<< HEAD
-  <div className="row d-flex justify-content-center mb-3">
-    <button onClick={(e) => onSubmit(e)} className="btn btn-primary">
-=======
               <div class="row d-flex justify-content-center mb-3">
-
-        {showWait ?
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner> : <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
->>>>>>> 26e5aac2eff05ce212f81539fac38f6ab789f22a
-            Agregar
-          </button>}
-      </div>
-    </form>
-  </div>
+                {showWait ?
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner> : <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
+                    Agregar
+                  </button>}
+              </div>
+            </form>
+          </div>
         </div >
       </div >
     </div >
