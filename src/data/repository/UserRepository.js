@@ -1,6 +1,14 @@
-import { getFirestore, doc, getDoc, collection, getDocs, deleteDoc, setDoc } from 'firebase/firestore';
-import { userConverter } from '../model/User'
-import app from '../data_source/firebase-config'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+  deleteDoc,
+  setDoc,
+} from "firebase/firestore";
+import { userConverter } from "../model/User";
+import app from "../data_source/firebase-config";
 
 /**
     //----------- imports -------------
@@ -15,6 +23,8 @@ import app from '../data_source/firebase-config'
     database2.addUser(new User("fran", "fran@hotmail.com.ar", retos));
     //----------- get all users -----------------
     database.getUsers().then(users => console.log(users));
+
+    
  */
 
 const db = getFirestore(app);
@@ -24,7 +34,7 @@ export async function getUsers() {
   let usersList = [];
   let query = collection(db, USERS_PATH).withConverter(userConverter);
   let result = await getDocs(query);
-  result.docs.forEach(doc => {
+  result.docs.forEach((doc) => {
     let user = doc.data();
     user.id = doc.id;
     usersList.push(user);
@@ -52,4 +62,3 @@ export async function updateUser(user) {
 export async function deleteUserById(id) {
   await deleteDoc(doc(db, USERS_PATH, id));
 }
-

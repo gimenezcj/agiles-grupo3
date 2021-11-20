@@ -1,12 +1,11 @@
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 import * as database from "../data/repository/RetoRepository";
-import {Reto} from "../data/model/Reto";
+import { Reto } from "../data/model/Reto";
 import React, { useState } from "react";
-import Spinner from 'react-bootstrap/Spinner'
-import * as database2 from '../data/repository/UserRepository';
+import Spinner from "react-bootstrap/Spinner";
 
 function Agregar() {
-  const [showWait, setshowWait] = React.useState(false)
+  const [showWait, setshowWait] = React.useState(false);
   const [form, setForm] = useState({
     titulo: "",
     amigo: -1,
@@ -24,20 +23,36 @@ function Agregar() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-//    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
-setshowWait(true);
- database.addReto( new Reto(form.titulo,form.descripcion,form.categoria,form.fechaIn,form.fechaFn,form.isDefault, form.amigo>0)).then(()=>{setshowWait(false);window.location = '/';});
+    //    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
+    setshowWait(true);
+    let reto = {
+      title: form.titulo,
+      description: form.descripcion,
+      categoria: form.categoria,
+      fechaInic: form.fechaIn,
+      fechFin: form.fechaFn,
+      isConAmigos: false,
+      isDefault: form.isDefault,
+    };
+    database
+      .addReto(reto)
+      .then(function (data) {
+        console.log("id de reto", data._key.path.segments[1]);
+        setshowWait(false);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
 
- 
- //console.log(form.amigo);
-//    setForm({
-//      titulo: "",
-//      amigo: "",
-//      categoria: "",
-//      fechaIn: "",
-//      fechaFn: "",
-//      descripcion: "",
-//    });
+    //console.log(form.amigo);
+    //    setForm({
+    //      titulo: "",
+    //      amigo: "",
+    //      categoria: "",
+    //      fechaIn: "",
+    //      fechaFn: "",
+    //      descripcion: "",
+    //    });
   };
 
   return (
@@ -77,7 +92,9 @@ setshowWait(true);
                   onChange={(e) => handleChange(e)}
                   class="form-select  mb-3"
                 >
-                  <option selected value="-1">Amigo</option>
+                  <option selected value="-1">
+                    Amigo
+                  </option>
                   <option value="1">Fernando</option>
                   <option value="2">Francisco</option>
                   <option value="3">Pepe</option>
@@ -155,13 +172,15 @@ setshowWait(true);
                 </div>
               </div>
               <div class="row d-flex justify-content-center mb-3">
-
-                {showWait?
-                <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>: <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
-                  Agregar
-                </button>}
+                {showWait ? (
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </Spinner>
+                ) : (
+                  <button onClick={(e) => onSubmit(e)} class="btn btn-primary">
+                    Agregar
+                  </button>
+                )}
               </div>
             </form>
           </div>
