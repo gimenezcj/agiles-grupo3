@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import * as database from "../data/repository/RetoRepository";
 
 function FormEliminar({ eliminar,show, onHide, setModalShow, reto }) {
-  const [retoActual, setRetoActual] = React.useState({});
-  const [habitos, setHabitos] = React.useState({})
 
   const submit = async (e) => {
     e.preventDefault();

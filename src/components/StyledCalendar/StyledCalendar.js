@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Badge } from 'antd';
-import moment from "moment";
 import { getRetos } from '../../data/repository/RetoRepository';
 
 import "./StyledCalendar.css";
