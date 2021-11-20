@@ -8,20 +8,45 @@ import "./StyledCalendar.css";
 function StyledCalendar() {
   const [retos, setRetos] = useState([]);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
-    getRetos().then(data => setRetos(data));
+    const types = [
+      "pink",
+      "red",
+      "yellow",
+      "orange",
+      "cyan",
+      "green",
+      "blue",
+      "purple",
+      "geekblue",
+      "magenta",
+      "volcano",
+      "gold",
+      "lime"
+    ];
+    
+    getRetos().then(data => {
+      const getRandomInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      let retos = data.map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }))
+      setRetos(retos)
+    });
     setLoading(false);
   }, [])
 
   function getListData(value) {
     let retosFiltrados = retos.filter((reto) =>
-    (reto.fechaInic <= value.format("DD/MM/YYYY") &&
-      reto.fechFin >= value.format("DD/MM/YYYY"))
+    (reto.fechaInic <= value.format("YYYY-MM-DD") &&
+      reto.fechFin >= value.format("YYYY-MM-DD"))
     )
-    
+
     let listData = retosFiltrados.map((reto) => ({
-      type: 'success',
+      type: reto.type,
       content: capitalize(reto.title.toLowerCase())
     }))
 
@@ -32,8 +57,8 @@ function StyledCalendar() {
     const listData = getListData(value);
     return (
       <ul className="events">
-        {listData.map(item => (
-          <li key={item.content}>
+        {listData.map((item, i) => (
+          <li key={`key-${item.content}-${i}`}>
             <Badge status={item.type} text={item.content} />
           </li>
         ))}

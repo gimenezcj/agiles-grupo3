@@ -24,10 +24,8 @@ function Retos() {
     <Fragment>
       <StyledNavbar />
       <Container className="text-center">
-
         {
           <Container className="my-5">
-
             <Row style={{ justifyContent: "center" }}>
               {
                 habitos.filter((reto) => reto.categoria === categoria && reto.isDefault === true).map((reto, i) => <VerReto reto={reto} key={`reto-key-${i}`} />)
