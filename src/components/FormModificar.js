@@ -15,7 +15,7 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
 
   useEffect(() => {
     setRetoActual(reto);
-  });
+  },[]);
 
   const handleChange = (name, value) => {
     Object.keys(retoActual).forEach((key) => {
