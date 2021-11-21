@@ -53,6 +53,7 @@ export async function getUserById(id) {
 export async function addUser(user) {
   const userRef = doc(collection(db, USERS_PATH)).withConverter(userConverter);
   await setDoc(userRef, user);
+  return userRef.id;
 }
 
 export async function updateUser(user) {

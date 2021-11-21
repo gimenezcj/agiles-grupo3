@@ -5,7 +5,7 @@ import StyledNavbar from "../components/Navbar/StyledNavbar";
 import StyledButton from "../components/StyledButton";
 import { Row } from 'react-bootstrap'
 import { getRetos } from "../data/repository/RetoRepository";
-import {Switch} from "antd";
+import { Switch } from "antd";
 import { auth } from "../data/data_source/firebase-config";
 
 function Home() {
@@ -21,23 +21,21 @@ function Home() {
     toggle ? setToggle(false) : setToggle(true);
   }
 
-  let eliminar=(reto)=>{
-    setHabitos(habitos.filter(i=>i!=reto));
+  let eliminar = (reto) => {
+    setHabitos(habitos.filter(i => i !== reto));
   };
 
   const logout = () => {
     auth.signOut();
     localStorage.setItem('user', false)
-    window.location.href ="/";
-
-};
+    window.location.href = "/";
+  };
 
   return (
     <Fragment>
       <StyledNavbar />
       <button onClick={logout}>Sign Out</button>
       <Container className="text-center">
-
         {
           habitos.length === 0
             ? <p className="mt-5">Agrega un habito para empezar!</p>

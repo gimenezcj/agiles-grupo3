@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
-import { GrEdit,GrTrash } from "react-icons/gr";
+import { GrEdit, GrTrash } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
-import FormEliminar  from "../../components/ModalEliminar";
+import FormEliminar from "../../components/ModalEliminar";
 import * as database from '../../data/repository/RetoRepository';
 
 import "./Reto.css";
@@ -13,7 +13,7 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto = {},eliminar=()=>{}}) {
+function Reto({ reto = {}, eliminar = () => { } }) {
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEliminar, setModalShowEliminar] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -96,7 +96,7 @@ function Reto({ reto = {},eliminar=()=>{}}) {
               className="rounded-circle mx-2"
               onClick={() => setModalShowEliminar(true)}
             >
-            <GrTrash/>
+              <GrTrash />
             </Button>
           </div>
         </Container>
