@@ -7,16 +7,20 @@ import { User } from "../data/model/User";
 const SignIn = () => {
   const provider = new GoogleAuthProvider();
 
-  const login = () => {
+  const login = async () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         const user = {
           name: result.user.displayName,
-          email: result.user.email,
+          mail: result.user.email,
         };
-        database.addUser(
-          new User(result.user.displayName, result.user.email, [])
-        );
+
+        const users = await database.getUsers();
+        let coincidence = users.filter((u) => u.mail === user.mail);
+
+        if (coincidence.length === 0) {
+          await database.addUser(new User(user.name, user.mail, []));
+        }
         localStorage.setItem("user", JSON.stringify(user));
         window.location.href = "/home";
       })
