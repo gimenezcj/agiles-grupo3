@@ -9,7 +9,7 @@ import {Switch} from "antd";
 import { auth } from "../data/data_source/firebase-config";
 
 function Home() {
-  
+
   const [habitos, setHabitos] = useState([]);
   const [toggle, setToggle] = useState(false);
 
@@ -17,7 +17,7 @@ function Home() {
     getRetos().then(data => setHabitos(data));
   }, [])
 
-  const filterRetos = () =>{
+  const filterRetos = () => {
     toggle ? setToggle(false) : setToggle(true);
   }
 
@@ -42,14 +42,14 @@ function Home() {
           habitos.length === 0
             ? <p className="mt-5">Agrega un habito para empezar!</p>
             : (<Container className="my-5">
-               <div className="mt-5 my-5" >
-                  <label className="mx-4">Retos Solitario/Grupales</label>
-                  <Switch onClick={filterRetos}/>
+              <div className="mt-5 my-5" >
+                <label className="mx-4">Retos Solitario/Grupales</label>
+                <Switch onClick={filterRetos} />
               </div>
               <Row style={{ justifyContent: "center" }}>
 
-                {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto}  key={`reto-key-${i}`} eliminar={eliminar}/> : null))
-                : (habitos.map((reto, i) => reto.isConAmigos===false ? <Reto reto={reto}  key={`reto-key-${i}`} eliminar={eliminar}/> : null))}
+                {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} /> : null))
+                  : (habitos.map((reto, i) => reto.isConAmigos === false ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} /> : null))}
               </Row>
             </Container>)
         }

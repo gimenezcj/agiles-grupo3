@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Image, Button, Container } from "react-bootstrap";
 import { GrEdit,GrTrash } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
@@ -14,20 +14,17 @@ import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
 function Reto({ reto = {},eliminar=()=>{}}) {
-  const [modalShow, setModalShow] = React.useState(false);
-  const [modalShowEliminar, setModalShowEliminar] = React.useState(false);
-  const [complete, setComplete] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalShowEliminar, setModalShowEliminar] = useState(false);
+  const [complete, setComplete] = useState(false);
 
   useEffect(() => {
     const date1 = reto.dailyTimestamp;
     const date2 = new Date().getTime();
-    var OneDay = 1 * 24 * 60 * 60 * 1000;
+    const OneDay = 1 * 24 * 60 * 60 * 1000;
     const diffTime = Math.abs(date2 - date1);
     setComplete(diffTime < OneDay);
   }, []);
-
-
-
 
   const getSrc = ({ categoria }) =>
     categoria === "Fisico"
@@ -40,9 +37,6 @@ function Reto({ reto = {},eliminar=()=>{}}) {
             ? imgMental
             : imgCustom;
 
-  const capitalize = (str) =>
-    str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
-
   const updateReto = () => {
     if (!complete) {
       reto.dailyTimestamp = new Date().getTime()
@@ -52,8 +46,10 @@ function Reto({ reto = {},eliminar=()=>{}}) {
       database.updateReto(reto);
     }
     setComplete(!complete);
-
   };
+
+  const capitalize = (str) =>
+    str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
 
   return (
     <Col sm={5}>

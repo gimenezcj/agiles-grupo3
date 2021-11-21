@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Card, Col, Image, Container } from "react-bootstrap";
-
 
 import "./Reto.css";
 
@@ -11,23 +10,20 @@ import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
 function VerReto({ reto = {} }) {
- 
-
   const getSrc = ({ categoria }) =>
     categoria === "Fisico"
       ? imgFisico
       : categoria === "Correr"
-      ? imgCorrer
-      : categoria === "Healthy"
-      ? imgHealthy
-      : categoria === "Mental"
-      ? imgMental
-      : imgCustom;
+        ? imgCorrer
+        : categoria === "Healthy"
+          ? imgHealthy
+          : categoria === "Mental"
+            ? imgMental
+            : imgCustom;
 
   const capitalize = (str) =>
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
 
-  
   return (
     <Col sm={4}>
       <Card
@@ -48,10 +44,10 @@ function VerReto({ reto = {} }) {
             <Card.Text style={{ color: "gray" }}>
               {capitalize(reto?.description)}
             </Card.Text>
-            
+
           </Card.Body>
         </Container>
-      </Card> 
+      </Card>
     </Col>
   );
 }
