@@ -1,33 +1,31 @@
 import React from "react";
-import { GoogleLogin } from "react-google-login";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../data/data_source/firebase-config";
+import * as database from "../data/repository/UserRepository";
+import { User } from "../data/model/User";
 
-const clientId =
-  "79944232594-6koavdob3u7b0mha99nbu2c50u4rpopt.apps.googleusercontent.com";
+const SignIn = () => {
+  const provider = new GoogleAuthProvider();
 
-function Login() {
-  const onSuccess = (res) => {
-    localStorage.setItem('usuario', res.profileObj);
-   window.location.href = "/"
-    console.log("[Login Success] currentUser: ", res.profileObj);
+  const login = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = {
+          name: result.user.displayName,
+          email: result.user.email,
+        };
+        database.addUser(
+          new User(result.user.displayName, result.user.email, [])
+        );
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.href = "/home";
+      })
+      .catch((error) => {
+        alert("Hubo un error al loguearse.");
+      });
   };
 
-  const onFailure = (res) => {
-    console.log("[Login failed] res: ", res);
-  };
+  return <button onClick={login}>Sign In With Google</button>;
+};
 
-  return (
-    <div>
-      <GoogleLogin
-        clientId={clientId}
-        buttonText="Login"
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-        cookiePolicy={"single_host_origin"}
-        style={{ marginTop: "100px" }}
-        isSignedIn={true}
-      />
-    </div>
-  );
-}
-
-export default Login;
+export default SignIn;

@@ -6,6 +6,7 @@ import StyledButton from "../components/StyledButton";
 import { Row } from 'react-bootstrap'
 import { getRetos } from "../data/repository/RetoRepository";
 import {Switch} from "antd";
+import { auth } from "../data/data_source/firebase-config";
 
 function Home() {
   
@@ -19,13 +20,22 @@ function Home() {
   const filterRetos = () =>{
     toggle ? setToggle(false) : setToggle(true);
   }
+
   let eliminar=(reto)=>{
     setHabitos(habitos.filter(i=>i!=reto));
   };
 
+  const logout = () => {
+    auth.signOut();
+    localStorage.setItem('user', false)
+    window.location.href ="/";
+
+};
+
   return (
     <Fragment>
       <StyledNavbar />
+      <button onClick={logout}>Sign Out</button>
       <Container className="text-center">
 
         {
