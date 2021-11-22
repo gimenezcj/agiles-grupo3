@@ -32,8 +32,8 @@ function StyledCalendar() {
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-      console.log(data[16].id,id);
-      let retos=data.filter(reto=>reto.id===id).map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }));
+      console.log(data,id);
+      let retos=data.filter(reto=>reto.userId===id).map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }));
 //      let retos = data.map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }))
       setRetos(retos)
     });
