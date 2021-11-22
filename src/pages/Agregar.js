@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
 function Agregar() {
+  const {id}=JSON.parse(localStorage.getItem("user"));
   const [showWait, setshowWait] = React.useState(false);
   const [form, setForm] = useState({
     titulo: "",
@@ -26,7 +27,7 @@ function Agregar() {
     //    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
     setshowWait(true);
     database.addReto(
-      new Reto(form.titulo, form.descripcion, form.categoria, form.fechaIn, form.fechaFn, form.isDefault, form.amigo > 0)
+      new Reto(id,form.titulo, form.descripcion, form.categoria, form.fechaIn, form.fechaFn, form.isDefault, form.amigo > 0)
     ).then(() => {
       setshowWait(false);
       window.location = '/';
