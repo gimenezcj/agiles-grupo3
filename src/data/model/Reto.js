@@ -1,5 +1,6 @@
 class Reto {
   constructor(
+    userId,
     title,
     description,
     categoria,
@@ -9,6 +10,7 @@ class Reto {
     isDefault,
     dailyTimestamp
   ) {
+    this.userId=userId;
     this.title = title;
     this.description = description;
     this.categoria = categoria;
@@ -27,6 +29,7 @@ class Reto {
 const retoConverter = {
   toFirestore: (reto) => {
     return {
+      userId: reto.userId,
       title: reto.title,
       description: reto.description,
       categoria: reto.categoria,
@@ -40,6 +43,7 @@ const retoConverter = {
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options);
     return new Reto(
+      data.userId,
       data.title,
       data.description,
       data.categoria,
