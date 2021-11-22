@@ -3,7 +3,8 @@ import { Card, Col, Image, Button, Container } from "react-bootstrap";
 import { GrEdit, GrTrash } from "react-icons/gr";
 import FormModificar from "../../components/FormModificar";
 import FormEliminar from "../../components/ModalEliminar";
-import * as database from '../../data/repository/RetoRepository';
+import * as databaseReto from '../../data/repository/RetoRepository';
+import * as databaseUser from '../../data/repository/UserRepository';
 
 import "./Reto.css";
 
@@ -17,6 +18,7 @@ function Reto({ reto = {}, eliminar = () => { } }) {
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEliminar, setModalShowEliminar] = useState(false);
   const [complete, setComplete] = useState(false);
+  const [haciendo, setHaciendo] = useState(false);
 
   useEffect(() => {
     const date1 = reto.dailyTimestamp;
@@ -24,7 +26,21 @@ function Reto({ reto = {}, eliminar = () => { } }) {
     const OneDay = 1 * 24 * 60 * 60 * 1000;
     const diffTime = Math.abs(date2 - date1);
     setComplete(diffTime < OneDay);
-  }, []);
+
+    async function handleUserFetch(){
+      let { id } = JSON.parse(localStorage.getItem("user"));
+      let user = await databaseUser.getUserById(id);
+      
+      const coincidence = user.retoList.includes(reto?.id);
+
+      if (coincidence) {
+        setHaciendo(true);
+      } else {
+        setHaciendo(false);
+      }
+    }
+    handleUserFetch();
+  }, [reto]);
 
   const getSrc = ({ categoria }) =>
     categoria === "Fisico"
@@ -40,12 +56,29 @@ function Reto({ reto = {}, eliminar = () => { } }) {
   const updateReto = () => {
     if (!complete) {
       reto.dailyTimestamp = new Date().getTime()
-      database.updateReto(reto);
+      databaseReto.updateReto(reto);
     } else {
       reto.dailyTimestamp = new Date().getTime() - (1000 * 60 * 60 * 24 * 5)
-      database.updateReto(reto);
+      databaseReto.updateReto(reto);
     }
     setComplete(!complete);
+  };
+
+  const assignRetoToUser = async ({ retoId = "" }) => {
+    let { id } = JSON.parse(localStorage.getItem("user"));
+    let user = await databaseUser.getUserById(id);
+
+    const coincidences = user.retoList.filter(reto => reto.id === retoId);
+
+    if (coincidences.length === 1) {
+      // si hay coincidencias hay que eliminarlo de la lista
+      // await databaseUser.updateUser(user);
+      // setHaciendo(false);
+    } else {
+      user.retoList.push(retoId);
+      await databaseUser.updateUser(user);
+      setHaciendo(true);
+    }
   };
 
   const capitalize = (str) =>
@@ -81,23 +114,31 @@ function Reto({ reto = {}, eliminar = () => { } }) {
             </p>
           </Card.Body>
           <div className="footer">
-
-            <Button
-              id="editButton"
-              variant="primary"
-              onClick={() => setModalShow(true)}
-              className="rounded-circle mx-2"
-            >
-              <GrEdit />
-            </Button>
-            <Button
-              id="removeButton"
-              variant="danger"
-              className="rounded-circle mx-2"
-              onClick={() => setModalShowEliminar(true)}
-            >
-              <GrTrash />
-            </Button>
+            <div className="button-container">
+              <Button
+                id="editButton"
+                variant="primary"
+                onClick={() => setModalShow(true)}
+                className="rounded-circle"
+              >
+                <GrEdit />
+              </Button>
+              <Button
+                id="removeButton"
+                variant="danger"
+                className="rounded-circle"
+                onClick={() => setModalShowEliminar(true)}
+              >
+                <GrTrash />
+              </Button>
+              <Button
+                id="action"
+                variant={haciendo ? "danger" : "primary"}
+                onClick={() => assignRetoToUser({ retoId: reto?.id })}
+              >
+                {haciendo ? "Abandonar reto" : "Hacer reto"}
+              </Button>
+            </div>
           </div>
         </Container>
       </Card>

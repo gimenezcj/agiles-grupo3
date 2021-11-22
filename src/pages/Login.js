@@ -13,6 +13,7 @@ const Login = () => {
         let user = {
           name: result.user.displayName,
           mail: result.user.email,
+          photo: result.user.photoURL,
           id: ""
         };
 
