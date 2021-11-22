@@ -4,10 +4,7 @@ import { Container, Image } from "react-bootstrap";
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 import StyledCalendar from "../components/StyledCalendar/StyledCalendar";
 
-//import { User } from "../data/model/User";
-
 function Perfil() {
-
   const [user, setUser] = useState({})
   useEffect(() => {
     setUser(
@@ -15,12 +12,10 @@ function Perfil() {
     )
   }, [])
 
-
   return (
     <Fragment>
       <StyledNavbar />
       <Container className="text-center my-5">
-
         {user && (
           <Fragment>
             <Image
@@ -31,7 +26,6 @@ function Perfil() {
             <h6 style={{ "color": "gray" }}>{user.mail}</h6>
           </Fragment>
         )}
-
         <hr className="m-auto mt-4" width="200px" />
         <h2 className="mt-4">Mi calendario</h2>
         <StyledCalendar />
