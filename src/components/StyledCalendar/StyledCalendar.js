@@ -7,7 +7,8 @@ import "./StyledCalendar.css";
 function StyledCalendar() {
   const [retos, setRetos] = useState([]);
   const [loading, setLoading] = useState(true);
- 
+  const {id}=JSON.parse(localStorage.getItem("user"));
+
   useEffect(() => {
     const types = [
       "pink",
@@ -24,15 +25,16 @@ function StyledCalendar() {
       "gold",
       "lime"
     ];
-    
+
     getRetos().then(data => {
       const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-
-      let retos = data.map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }))
+      console.log(data[16].id,id);
+      let retos=data.filter(reto=>reto.id===id).map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }));
+//      let retos = data.map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }))
       setRetos(retos)
     });
     setLoading(false);
