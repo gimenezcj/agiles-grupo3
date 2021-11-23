@@ -14,11 +14,12 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto = {}, eliminar = () => { } }) {
+function Reto({ reto={}, eliminar=()=>{}}) {
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEliminar, setModalShowEliminar] = useState(false);
   const [complete, setComplete] = useState(false);
   const [haciendo, setHaciendo] = useState(false);
+  let user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const date1 = reto.dailyTimestamp;
@@ -28,10 +29,10 @@ function Reto({ reto = {}, eliminar = () => { } }) {
     setComplete(diffTime < OneDay);
 
     async function handleUserFetch(){
-      let { id } = JSON.parse(localStorage.getItem("user"));
-      let user = await databaseUser.getUserById(id);
-      
-      const coincidence = user.retoList.includes(reto?.id);
+
+//      let user = await databaseUser.getUserById(id);
+
+      const coincidence = user.retoList.includes(reto.id);
 
       if (coincidence) {
         setHaciendo(true);
@@ -41,6 +42,13 @@ function Reto({ reto = {}, eliminar = () => { } }) {
     }
     handleUserFetch();
   }, [reto]);
+
+  const mireto=()=>{
+    return user.retoList.filter((r)=>r==reto.id).length>0 && reto.userId==user.id;
+  }
+
+
+
 
   const getSrc = ({ categoria }) =>
     categoria === "Fisico"
@@ -115,6 +123,7 @@ function Reto({ reto = {}, eliminar = () => { } }) {
           </Card.Body>
           <div className="footer">
             <div className="button-container">
+            { mireto() ?
               <Button
                 id="editButton"
                 variant="primary"
@@ -122,7 +131,8 @@ function Reto({ reto = {}, eliminar = () => { } }) {
                 className="rounded-circle"
               >
                 <GrEdit />
-              </Button>
+              </Button> :"" }
+              { mireto() ?
               <Button
                 id="removeButton"
                 variant="danger"
@@ -130,14 +140,15 @@ function Reto({ reto = {}, eliminar = () => { } }) {
                 onClick={() => setModalShowEliminar(true)}
               >
                 <GrTrash />
-              </Button>
+              </Button> :"" }
+              {!mireto()?
               <Button
                 id="action"
                 variant={haciendo ? "danger" : "primary"}
-                onClick={() => assignRetoToUser({ retoId: reto?.id })}
+                onClick={() => eliminar(reto)} //assignRetoToUser({ retoId: reto?.id })}
               >
                 {haciendo ? "Abandonar reto" : "Hacer reto"}
-              </Button>
+              </Button> :"" }
             </div>
           </div>
         </Container>

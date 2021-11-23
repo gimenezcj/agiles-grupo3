@@ -14,7 +14,8 @@ const Login = () => {
           name: result.user.displayName,
           mail: result.user.email,
           photo: result.user.photoURL,
-          id: ""
+          id: "",
+          retoList: result.user.retoList,
         };
 
         const users = await database.getUsers();
@@ -24,7 +25,9 @@ const Login = () => {
           user.id = await database.addUser(new User(user.name, user.mail, []));
         } else {
           user.id = coincidence[0].id;
+          user.retoList=coincidence[0].retoList;
         }
+        console.log(user);
         localStorage.setItem("user", JSON.stringify(user));
         window.location.href = "/home";
       })

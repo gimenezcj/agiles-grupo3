@@ -7,22 +7,31 @@ import { Row } from 'react-bootstrap'
 import { getRetos } from "../data/repository/RetoRepository";
 import { Switch } from "antd";
 import { auth } from "../data/data_source/firebase-config";
+import {getRetoById,getRetoByIds} from "../data/repository/RetoRepository";
+import {updateUser, getUserById} from "../data/repository/UserRepository";
 
 function Home() {
 
+  let user=JSON.parse(localStorage.getItem("user"));
   const [habitos, setHabitos] = useState([]);
   const [toggle, setToggle] = useState(false);
+  let retos=[];
 
   useEffect(() => {
-    getRetos().then(data => setHabitos(data));
+     getRetoByIds(user.retoList).then(data => {setHabitos(data);console.log(data);});
+
   }, [])
 
   const filterRetos = () => {
     toggle ? setToggle(false) : setToggle(true);
   }
 
-  let eliminar = (reto) => {
-    setHabitos(habitos.filter(i => i !== reto));
+  let eliminar = (reto) => {                                //Solo elimino el reto si yo lo cree
+    setHabitos(habitos.filter(i => i !== reto));            //Se elimina el reto de la lista visible
+    user.retolist=user.retoList.filter((r)=>r!=reto.id);    //Se elimina el reto de la lista de retos del usuario: user.retoList
+    localStorage.removeItem('user');                        //Eliminar al usuario del localStorage
+    localStorage.setItem("user", JSON.stringify(user));     //insertear usuario al localStorage
+    updateUser(user).then(()=>{console.log("usuario actualizado");}).catch((error) => {alert("Error al actualizar.");}); //Actualizar usuario en firebase
   };
 
   const logout = () => {
@@ -47,7 +56,7 @@ function Home() {
               <Row style={{ justifyContent: "center" }}>
 
                 {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} /> : null))
-                  : (habitos.map((reto, i) => reto.isConAmigos === false ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} /> : null))}
+                  : (habitos.map((reto, i) => reto.isConAmigos === false ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar}/> : null))}
               </Row>
             </Container>)
         }

@@ -1,12 +1,15 @@
 import StyledNavbar from "../components/Navbar/StyledNavbar";
 import * as database from "../data/repository/RetoRepository";
+import {updateUser, getUserById,getUsers} from "../data/repository/UserRepository";
 import { Reto } from "../data/model/Reto";
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
 function Agregar() {
-  const {id}=JSON.parse(localStorage.getItem("user"));
+  let user=JSON.parse(localStorage.getItem("user"));
+  if(user.retoList===undefined) user.retoList=[];
   const [showWait, setshowWait] = React.useState(false);
+  const [users, setUsers] = React.useState([]);
   const [form, setForm] = useState({
     titulo: "",
     amigo: -1,
@@ -16,6 +19,11 @@ function Agregar() {
     isDefault: false,
     descripcion: "",
   });
+
+  useEffect(() => {
+     getUsers().then(data => {setUsers(data.filter(u=>u.id!=user.id));}); //obtenemos la lista de usuarios y le quitamos el usuario actual.
+  }, [])
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -24,27 +32,32 @@ function Agregar() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    //    const {titulo,descripcion,categoria,fechaIn,fechaFn,descripcion,amigo}= form;
     setshowWait(true);
+    console.log(form.amigo);
     database.addReto(
-      new Reto(id,form.titulo, form.descripcion, form.categoria, form.fechaIn, form.fechaFn, form.isDefault, form.amigo > 0)
-    ).then(() => {
-      setshowWait(false);
-      window.location = '/';
+      new Reto(user.id,form.titulo, form.descripcion, form.categoria, form.fechaIn, form.fechaFn, form.amigo !=-1, form.isDefault)
+    ).then((retoId) => {
+      //actualizamos el reto en la lista del retos del usuario actual
+      user.retoList.push(retoId);
+      localStorage.removeItem('user');
+      localStorage.setItem("user", JSON.stringify(user));
+      updateUser(user).then(()=>{console.log("usuario actualizado");}).catch((error) => {console.log("Error al actualizar.");});
+      if(form.amigo!=-1){console.log("actualizando amigo");
+        //si seleccionamos un amigo, colocamos el reto en su lista de retos y actualizamos
+        getUserById(form.amigo).then((u)=>{
+          if(u.retoList===undefined) u.retoList=[];
+          u.retoList.push(retoId);
+          updateUser(u).then(()=>{console.log("amigo actualizado");}).catch((error) => {console.log("Error al actualizar amigo.");});
+          setshowWait(false);
+          window.location = '/';
+        });
+      } else {
+        setshowWait(false);
+        window.location = '/';
+      }
     });
-
-
-    //console.log(form.amigo);
-    //    setForm({
-    //      titulo: "",
-    //      amigo: "",
-    //      categoria: "",
-    //      fechaIn: "",
-    //      fechaFn: "",
-    //      descripcion: "",
-    //    });
   };
-
+  console.log(users);
   return (
     <div>
       <StyledNavbar />
@@ -83,11 +96,11 @@ function Agregar() {
                   className="form-select  mb-3"
                 >
                   <option selected value="-1">
-                    Amigo
+                    Solo,sin amigos
                   </option>
-                  <option value="1">Fernando</option>
-                  <option value="2">Francisco</option>
-                  <option value="3">Pepe</option>
+                  {users.map(u =>
+                    <option key={u.id} value={u.id}>{u.name}</option>
+                  )}
                 </select>
               </div>
               <div className="form-group">

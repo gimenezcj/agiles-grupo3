@@ -5,21 +5,21 @@ import {
   collection,
   getDocs,
   deleteDoc,
-  setDoc,
+  setDoc,where,
 } from "firebase/firestore";
 import { retoConverter } from "../model/Reto";
 import app from "../data_source/firebase-config";
 
 /**
  * AYUDA (por las dudas)
- * 
+ *
  * ----- basic imports from component: ------
- * 
+ *
    import * as database from '../data/repository/RetoRepository';
    import {Reto} from '../data/model/Reto'
- * 
+ *
  * ----- basic usage methods ------
- * 
+ *
   //se sobreentiende que para eliminar un reto u obtenerlo por id tienen que pasar como parametro reto.id:
   database.getRetos().then(retos => console.log(retos));
   database.getRetoById("F352XJLds9UshCFckUPJ").then(reto => console.log(reto));
@@ -27,7 +27,7 @@ import app from "../data_source/firebase-config";
   database.deleteRetoById("99JRBRHW1uNP5VK53gLD");
   //como ustedes sacan el reto de la bd, una vez editado sus atributos en modificar lo pasan entero al update:
   database.updateReto(reto);
- * 
+ *
  *  -------------------------------
  */
 
@@ -58,7 +58,7 @@ export async function addReto(reto) {
   reto.dailyTimestamp = new Date().getTime() - 1000 * 60 * 60 * 24 * 5;
   const retoRef = doc(collection(db, RETOS_PATH)).withConverter(retoConverter);
   await setDoc(retoRef, reto);
-  return retoRef;
+  return retoRef.id;
 }
 
 export async function updateReto(reto) {
@@ -67,4 +67,17 @@ export async function updateReto(reto) {
 
 export async function deleteRetoById(id) {
   await deleteDoc(doc(db, RETOS_PATH, id));
+}
+
+export async function getRetoByIds(lista){
+
+  let retosList=[]; //sEzK9ykZumElINTfoijx
+  let query = collection(db, "retos" ).withConverter(retoConverter);
+  let result = await getDocs(query);
+  result.docs.forEach((doc) => {
+    let reto = doc.data();
+    reto.id = doc.id;
+    if(lista.find(e=>e==reto.id)!=undefined)retosList.push(reto);
+  });
+  return retosList;
 }
