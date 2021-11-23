@@ -28,10 +28,10 @@ function Home() {
 
   let eliminar = (reto) => {                                //Solo elimino el reto si yo lo cree
     setHabitos(habitos.filter(i => i !== reto));            //Se elimina el reto de la lista visible
-    user.retolist=user.retoList.filter((r)=>r!=reto.id);    //Se elimina el reto de la lista de retos del usuario: user.retoList
+    user.retoList=user.retoList.filter((r)=>r!=reto.id);    //Se elimina el reto de la lista de retos del usuario: user.retoList
     localStorage.removeItem('user');                        //Eliminar al usuario del localStorage
     localStorage.setItem("user", JSON.stringify(user));     //insertear usuario al localStorage
-    updateUser(user).then(()=>{console.log("usuario actualizado");}).catch((error) => {alert("Error al actualizar.");}); //Actualizar usuario en firebase
+    updateUser(user).then(()=>{console.log("usuario actualizado");}).catch((error) => {console.log("Error al actualizar.");}); //Actualizar usuario en firebase
   };
 
   const logout = () => {
@@ -55,8 +55,8 @@ function Home() {
               </div>
               <Row style={{ justifyContent: "center" }}>
 
-                {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} /> : null))
-                  : (habitos.map((reto, i) => reto.isConAmigos === false ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar}/> : null))}
+                {toggle ? (habitos.map((reto, i) => reto.isConAmigos ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} page='Home'/> : null))
+                  : (habitos.map((reto, i) => reto.isConAmigos === false ? <Reto reto={reto} key={`reto-key-${i}`} eliminar={eliminar} page='Home'/> : null))}
               </Row>
             </Container>)
         }

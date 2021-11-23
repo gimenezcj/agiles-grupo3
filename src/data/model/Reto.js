@@ -29,12 +29,12 @@ class Reto {
 const retoConverter = {
   toFirestore: (reto) => {
     return {
-      userId: reto.userId,
+      userId: (reto.userId==undefined?"":reto.userId),
       title: reto.title,
       description: reto.description,
       categoria: reto.categoria,
       fechaInic: reto.fechaInic,
-      fechFin: reto.fechFin,
+      fechFin: (reto.fechFin==undefined?"":reto.fechFin),
       isConAmigos: reto.isConAmigos,
       isDefault: reto.isDefault,
       dailyTimestamp: reto.dailyTimestamp,

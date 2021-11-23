@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Badge } from 'antd';
-import { getRetos } from '../../data/repository/RetoRepository';
+import { getRetoByIds } from '../../data/repository/RetoRepository';
 
 import "./StyledCalendar.css";
 
 function StyledCalendar() {
   const [retos, setRetos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {id}=JSON.parse(localStorage.getItem("user"));
+  const user=JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const types = [
@@ -26,16 +26,16 @@ function StyledCalendar() {
       "lime"
     ];
 
-    getRetos().then(data => {
+    getRetoByIds(user.retoList).then(data => {
       const getRandomInt = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
       }
-      console.log(data,id);
-      let retos=data.filter(reto=>reto.userId===id).map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }));
+      let retos=data.map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }));
 //      let retos = data.map((reto) => ({ ...reto, type: types[getRandomInt(0, types.length)] }))
       setRetos(retos)
+      console.log(retos);
     });
     setLoading(false);
   }, [])

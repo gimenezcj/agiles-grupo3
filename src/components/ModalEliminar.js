@@ -6,6 +6,7 @@ function FormEliminar({ eliminar,show, onHide, setModalShow, reto }) {
 
   const submit = async (e) => {
     e.preventDefault();
+    console.log("reto: eliminado fisicamente");
     database.deleteRetoById(reto.id);
     eliminar(reto);
     setModalShow(false);

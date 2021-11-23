@@ -14,7 +14,7 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto={}, eliminar=()=>{}}) {
+function Reto({ reto={}, eliminar=()=>{},page}) {
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEliminar, setModalShowEliminar] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -62,6 +62,7 @@ function Reto({ reto={}, eliminar=()=>{}}) {
             : imgCustom;
 
   const updateReto = () => {
+
     if (!complete) {
       reto.dailyTimestamp = new Date().getTime()
       databaseReto.updateReto(reto);
@@ -112,6 +113,7 @@ function Reto({ reto={}, eliminar=()=>{}}) {
             <Card.Text style={{ color: "gray" }}>
               {capitalize(reto?.description)}
             </Card.Text>
+            {(reto.userId===undefined||reto.userId=="") && page==='Retos'?"":
             <p
               className={complete ? "completo" : "incompleto"}
               onClick={() => {
@@ -119,7 +121,7 @@ function Reto({ reto={}, eliminar=()=>{}}) {
               }}
             >
               {complete ? "Completo" : "Incompleto"}
-            </p>
+            </p> }
           </Card.Body>
           <div className="footer">
             <div className="button-container">
@@ -145,7 +147,7 @@ function Reto({ reto={}, eliminar=()=>{}}) {
               <Button
                 id="action"
                 variant={haciendo ? "danger" : "primary"}
-                onClick={() => eliminar(reto)} //assignRetoToUser({ retoId: reto?.id })}
+                onClick={() => {eliminar(reto);setHaciendo(!haciendo);}} //assignRetoToUser({ retoId: reto?.id })}
               >
                 {haciendo ? "Abandonar reto" : "Hacer reto"}
               </Button> :"" }
