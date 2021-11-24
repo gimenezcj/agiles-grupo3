@@ -1,14 +1,24 @@
 import React, { useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import { updateUser, getUserById, getUsers } from "../data/repository/UserRepository";
 import * as database from "../data/repository/RetoRepository";
 
 function FormModificar({ show, onHide, setModalShow, reto }) {
   const [retoActual, setRetoActual] = React.useState({});
+  const [users, setUsers] = React.useState([]);
+  let user=JSON.parse(localStorage.getItem("user"));
 
   const submit = async (e) => {
     e.preventDefault();
 
     database.updateReto(retoActual);
+
+    if (retoActual.isConAmigos !== false) {
+      getUserById(retoActual.isConAmigos).then((amigo)=>{
+      amigo.retoList.push(retoActual.id);
+      updateUser(amigo)
+      });
+    }
 
     setModalShow(false);
   };
@@ -16,6 +26,10 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
   useEffect(() => {
     setRetoActual(reto);
   },[]);
+
+  useEffect(() => {
+    getUsers().then(data => {setUsers(data.filter(u=>u.id!=user.id));}); 
+ }, [])
 
   const handleChange = (name, value) => {
     Object.keys(retoActual).forEach((key) => {
@@ -55,12 +69,20 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                   </div>
                 </div>
                 <div class="form-group">
-                  <select class="form-select mb-3">
-                    <option selected>Amigo</option>
-                    <option value="1">Fernando</option>
-                    <option value="2">Francisco</option>
-                    <option value="3">Pepe</option>
-                  </select>
+                <select
+                  name="amigo"
+                  onChange={(e) => e.target.value==="-1" ? handleChange("isConAmigos", false) : handleChange("isConAmigos", e.target.value)}
+                  className="form-select  mb-3">
+                  <option selected>
+                    Amigos
+                  </option>
+                  <option value="-1">
+                    Solo
+                  </option>
+                  {users.map(u =>
+                    <option key={u.id} value={u.id}>{u.name}</option>
+                  )}
+                </select>
                 </div>
                 <div class="form-group">
                   <select
