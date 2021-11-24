@@ -25,7 +25,7 @@ const Login = () => {
           user.id = await database.addUser(new User(user.name, user.mail, []));
         } else {
           user.id = coincidence[0].id;
-          user.retoList=coincidence[0].retoList;
+          user.retoList = coincidence[0].retoList;
         }
         console.log(user);
         localStorage.setItem("user", JSON.stringify(user));
@@ -36,7 +36,23 @@ const Login = () => {
       });
   };
 
-  return <button onClick={login}>Sign In With Google</button>;
+  return (
+    <div class="container">
+      <div class="col-md-12 col-md-offset-2 p-5">
+        <div class="card text-center">
+          <div class="card-header">TE RETO!</div>
+          <div class="card-body">
+            <h5 class="card-title">Bienvenido!</h5>
+            <p class="card-text">Para ingresar debes loguearse</p>
+            <button class="btn btn-primary" onClick={login}>
+              Sign In With Google
+            </button>
+          </div>
+          <div class="card-footer text-muted">Grupo 1</div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Login;
