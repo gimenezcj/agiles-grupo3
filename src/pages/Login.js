@@ -48,7 +48,7 @@ const Login = () => {
               Sign In With Google
             </button>
           </div>
-          <div class="card-footer text-muted">Grupo 1</div>
+          <div class="card-footer text-muted">Grupo 3</div>
         </div>
       </div>
     </div>
