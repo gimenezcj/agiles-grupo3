@@ -100,7 +100,7 @@ function Reto({ reto = {}, eliminar = () => { }, page }) {
       <Card
         className="my-1 border-primary border-5 border-bottom-0 \
       border-end-0 border-top-0 shadow bg-body rounded centrar"
-        style={{ height: "125px" }}
+        style={{ height: "140px" }}
       >
         <Container fluid className="p-0">
           <div className="imagen">
@@ -111,7 +111,7 @@ function Reto({ reto = {}, eliminar = () => { }, page }) {
             />
           </div>
           <Card.Body className="px-0 body" style={{ textAlign: "left" }}>
-            <Card.Title>{capitalize(reto?.title)}</Card.Title>
+            <Card.Title style={{textOverflow: "ellipsis", maxWidth:"175px", maxLines: "1", overflow: "hidden", whiteSpace: "nowrap"}}>{capitalize(reto?.title)}</Card.Title>
             <Card.Text style={{ color: "gray" }}>
               {capitalize(reto?.description)}
             </Card.Text>
@@ -149,6 +149,7 @@ function Reto({ reto = {}, eliminar = () => { }, page }) {
                 <Button
                   id="action"
                   variant={haciendo ? "danger" : "primary"}
+                  style={{marginLeft: "20px"}}
                   onClick={() => { eliminar(reto); setHaciendo(!haciendo); }} //assignRetoToUser({ retoId: reto?.id })}
                 >
                   {haciendo ? "Abandonar reto" : "Hacer reto"}
