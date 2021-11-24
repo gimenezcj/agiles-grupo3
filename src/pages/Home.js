@@ -22,7 +22,7 @@ function Home() {
       setHabitos(data);
       console.log(data);
     });
-  }, [toggle]);
+  }, [toggle,user]);
 
   const filterRetos = () => {
     
