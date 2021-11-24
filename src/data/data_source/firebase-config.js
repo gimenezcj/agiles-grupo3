@@ -2,14 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBzxGFeiHGHYgKsBH7M7AQLf8bhQKesXYA",
-  authDomain: "hola-firebase-e82f6.firebaseapp.com",
-  databaseURL: "https://hola-firebase-e82f6.firebaseio.com",
-  projectId: "hola-firebase-e82f6",
-  storageBucket: "hola-firebase-e82f6.appspot.com",
-  messagingSenderId: "550805858296",
-  appId: "1:550805858296:web:52e17c1adcc1bd8df3180d",
-  measurementId: "G-CXYVRHY4E6"
+  apiKey: "AIzaSyBTJkSB1zMEd4MT4UBMJs8XGWi9r7Q5iSg",
+  authDomain: "agiles-ee12f.firebaseapp.com",
+  projectId: "agiles-ee12f",
+  storageBucket: "agiles-ee12f.appspot.com",
+  messagingSenderId: "129079492680",
+  appId: "1:129079492680:web:73d7e6dfd7a582045a987d"
 };
 
 // Initialize Firebase
