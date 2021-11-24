@@ -14,7 +14,7 @@ import imgFisico from "../../images/Fisico.png";
 import imgHealthy from "../../images/Healthy.png";
 import imgMental from "../../images/Mental.png";
 
-function Reto({ reto={}, eliminar=()=>{},page}) {
+function Reto({ reto = {}, eliminar = () => { }, page }) {
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEliminar, setModalShowEliminar] = useState(false);
   const [complete, setComplete] = useState(false);
@@ -28,11 +28,11 @@ function Reto({ reto={}, eliminar=()=>{},page}) {
     const diffTime = Math.abs(date2 - date1);
     setComplete(diffTime < OneDay);
 
-    async function handleUserFetch(){
+    async function handleUserFetch() {
 
-//      let user = await databaseUser.getUserById(id);
+      //      let user = await databaseUser.getUserById(id);
 
-      const coincidence = user.retoList.includes(reto.id);
+      const coincidence = user?.retoList && user?.retoList.includes(reto.id);
 
       if (coincidence) {
         setHaciendo(true);
@@ -43,8 +43,10 @@ function Reto({ reto={}, eliminar=()=>{},page}) {
     handleUserFetch();
   }, [reto]);
 
-  const mireto=()=>{
-    return user.retoList.filter((r)=>r==reto.id).length>0 && reto.userId==user.id;
+  const mireto = () => {
+    return user?.retoList
+      ? user?.retoList.filter((r) => r == reto.id).length > 0 && reto.userId == user.id
+      : [];
   }
 
 
@@ -73,22 +75,22 @@ function Reto({ reto={}, eliminar=()=>{},page}) {
     setComplete(!complete);
   };
 
-  const assignRetoToUser = async ({ retoId = "" }) => {
-    let { id } = JSON.parse(localStorage.getItem("user"));
-    let user = await databaseUser.getUserById(id);
+  // const assignRetoToUser = async ({ retoId = "" }) => {
+  //   let { id } = JSON.parse(localStorage.getItem("user"));
+  //   let user = await databaseUser.getUserById(id);
 
-    const coincidences = user.retoList.filter(reto => reto.id === retoId);
+  //   const coincidences = user?.retoList ? user?.retoList.filter(reto => reto.id === retoId) : [];
 
-    if (coincidences.length === 1) {
-      // si hay coincidencias hay que eliminarlo de la lista
-      // await databaseUser.updateUser(user);
-      // setHaciendo(false);
-    } else {
-      user.retoList.push(retoId);
-      await databaseUser.updateUser(user);
-      setHaciendo(true);
-    }
-  };
+  //   if (coincidences.length === 1) {
+  //     // si hay coincidencias hay que eliminarlo de la lista
+  //     // await databaseUser.updateUser(user);
+  //     // setHaciendo(false);
+  //   } else {
+  //     user?.retoList.push(retoId);
+  //     await databaseUser.updateUser(user);
+  //     setHaciendo(true);
+  //   }
+  // };
 
   const capitalize = (str) =>
     str.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
@@ -113,44 +115,44 @@ function Reto({ reto={}, eliminar=()=>{},page}) {
             <Card.Text style={{ color: "gray" }}>
               {capitalize(reto?.description)}
             </Card.Text>
-            {(reto.userId===undefined||reto.userId=="") && page==='Retos'?"":
-            <p
-              className={complete ? "completo" : "incompleto"}
-              onClick={() => {
-                updateReto();
-              }}
-            >
-              {complete ? "Completo" : "Incompleto"}
-            </p> }
+            {(reto.userId === undefined || reto.userId == "") && page === 'Retos' ? "" :
+              <p
+                className={complete ? "completo" : "incompleto"}
+                onClick={() => {
+                  updateReto();
+                }}
+              >
+                {complete ? "Completo" : "Incompleto"}
+              </p>}
           </Card.Body>
           <div className="footer">
             <div className="button-container">
-            { mireto() ?
-              <Button
-                id="editButton"
-                variant="primary"
-                onClick={() => setModalShow(true)}
-                className="rounded-circle"
-              >
-                <GrEdit />
-              </Button> :"" }
-              { mireto() ?
-              <Button
-                id="removeButton"
-                variant="danger"
-                className="rounded-circle"
-                onClick={() => setModalShowEliminar(true)}
-              >
-                <GrTrash />
-              </Button> :"" }
-              {!mireto()?
-              <Button
-                id="action"
-                variant={haciendo ? "danger" : "primary"}
-                onClick={() => {eliminar(reto);setHaciendo(!haciendo);}} //assignRetoToUser({ retoId: reto?.id })}
-              >
-                {haciendo ? "Abandonar reto" : "Hacer reto"}
-              </Button> :"" }
+              {mireto() ?
+                <Button
+                  id="editButton"
+                  variant="primary"
+                  onClick={() => setModalShow(true)}
+                  className="rounded-circle"
+                >
+                  <GrEdit />
+                </Button> : ""}
+              {mireto() ?
+                <Button
+                  id="removeButton"
+                  variant="danger"
+                  className="rounded-circle"
+                  onClick={() => setModalShowEliminar(true)}
+                >
+                  <GrTrash />
+                </Button> : ""}
+              {!mireto() ?
+                <Button
+                  id="action"
+                  variant={haciendo ? "danger" : "primary"}
+                  onClick={() => { eliminar(reto); setHaciendo(!haciendo); }} //assignRetoToUser({ retoId: reto?.id })}
+                >
+                  {haciendo ? "Abandonar reto" : "Hacer reto"}
+                </Button> : ""}
             </div>
           </div>
         </Container>
