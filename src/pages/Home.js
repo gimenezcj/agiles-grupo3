@@ -18,7 +18,7 @@ function Home() {
   let retos=[];
 
   useEffect(() => {
-     getRetoByIds(user.retoList).then(data => {setHabitos(data);console.log(data);});
+     getRetoByIds(user?.retoList ? user?.retoList : []).then(data => {setHabitos(data);console.log(data);});
 
   }, [])
 
