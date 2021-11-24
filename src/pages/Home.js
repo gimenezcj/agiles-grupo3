@@ -9,6 +9,7 @@ import { Switch } from "antd";
 import { auth } from "../data/data_source/firebase-config";
 import { getRetoById, getRetoByIds } from "../data/repository/RetoRepository";
 import { updateUser, getUserById } from "../data/repository/UserRepository";
+import { GrDatabase } from "react-icons/gr";
 
 function Home() {
   let user = JSON.parse(localStorage.getItem("user"));
@@ -21,10 +22,16 @@ function Home() {
       setHabitos(data);
       console.log(data);
     });
-  }, []);
+  }, [toggle]);
 
   const filterRetos = () => {
-    toggle ? setToggle(false) : setToggle(true);
+    
+    getUserById(user.id).then((u)=>{
+    user=u;
+    localStorage.removeItem('user');
+    localStorage.setItem("user", JSON.stringify(user));
+    toggle ? setToggle(false) : setToggle(true);})
+    
   };
 
   let eliminar = (reto) => {

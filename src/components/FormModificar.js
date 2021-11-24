@@ -73,7 +73,7 @@ function FormModificar({ show, onHide, setModalShow, reto }) {
                   name="amigo"
                   onChange={(e) => e.target.value==="-1" ? handleChange("isConAmigos", false) : handleChange("isConAmigos", e.target.value)}
                   className="form-select  mb-3">
-                  <option selected>
+                  <option selected value="-2">
                     Amigos
                   </option>
                   <option value="-1">
